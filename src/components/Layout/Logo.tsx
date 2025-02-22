@@ -17,9 +17,9 @@ export const Logo = () => {
         id="logo/tgg/stacked/negative"
         data-testid="logo/tgg/stacked/negative"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="tgg_Logo_RGB_Stacked_Secondary">
           <path

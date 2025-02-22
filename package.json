@@ -13,6 +13,8 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.5",
+    "@mui/x-charts": "^7.27.0",
+    "@tanstack/react-store": "^0.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

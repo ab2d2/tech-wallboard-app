@@ -4,12 +4,18 @@ import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = ({
+  children,
+  currentPageIndex,
+}: {
+  children: ReactNode;
+  currentPageIndex: number;
+}) => {
   return (
     <>
       <Header />
       <StyledMain>{children}</StyledMain>
-      <Footer />
+      <Footer currentPageIndex={currentPageIndex} />
     </>
   );
 };

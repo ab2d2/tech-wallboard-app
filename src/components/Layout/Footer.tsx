@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ProgressBarWithLabel } from "../Progress/Progress";
 import { timers } from "../../constants/timers";
 
-export const Footer = ({ currentPageIndex }: { currentPageIndex: number }) => {
+export const Footer = () => {
   const [dateAndTime, setDateAndTime] = useState(new Date().toLocaleString());
   const [progress, setProgress] = useState(timers.secondsPerPage);
 
@@ -14,7 +14,7 @@ export const Footer = ({ currentPageIndex }: { currentPageIndex: number }) => {
     }, timers.milliSecondsPerUpdate);
 
     return () => clearInterval(interval);
-  }, [currentPageIndex]);
+  }, []);
 
   // Update the progress bar every second
   useEffect(() => {

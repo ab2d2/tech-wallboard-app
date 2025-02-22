@@ -1,11 +1,26 @@
-import { Category } from "../../../public/screens_config_data";
-import Bar from "../Charts/Bar";
+import styled from "@emotion/styled";
 
-export const Page = ({ currentPage }: { currentPage: Category }) => {
-  console.log("Page component, current page is ", currentPage);
+import Bar from "../Charts/Bar";
+import { FlattenedCategoryConfig } from "../../store/utils";
+
+export const Page = ({
+  currentPage,
+}: {
+  currentPage: FlattenedCategoryConfig;
+}) => {
+  console.log("Page component, current currentPage is ", currentPage);
   return (
-    <div>
+    <StyledContainer>
       <Bar />
-    </div>
+    </StyledContainer>
   );
 };
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+`;

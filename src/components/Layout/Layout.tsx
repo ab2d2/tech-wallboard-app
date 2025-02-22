@@ -3,19 +3,20 @@ import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { FlattenedCategoryConfig } from "../../store/utils";
 
 export const Layout = ({
   children,
-  currentPageIndex,
+  currentPage,
 }: {
   children: ReactNode;
-  currentPageIndex: number;
+  currentPage: FlattenedCategoryConfig;
 }) => {
   return (
     <>
-      <Header />
+      <Header currentPage={currentPage} />
       <StyledMain>{children}</StyledMain>
-      <Footer currentPageIndex={currentPageIndex} />
+      <Footer />
     </>
   );
 };

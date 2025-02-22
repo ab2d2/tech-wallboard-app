@@ -13,10 +13,6 @@ export function ProgressBarWithLabel(
     };
   }
 ) {
-  console.log(
-    "ProgressBarWithLabel progressPercentage ",
-    props.progress.progressPercentage
-  );
   return (
     <Box
       sx={{

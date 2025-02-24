@@ -8,6 +8,7 @@ import {
   Legend,
   CategoryScale,
 } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import { Page } from "./components/Pages/page";
 
@@ -15,7 +16,7 @@ import { useStore } from "@tanstack/react-store";
 import { store } from "./store/store";
 import { timers } from "./constants/timers";
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale);
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, ChartDataLabels);
 
 function App() {
   // const [config, setConfig] = useState<ScreensConfigData>(

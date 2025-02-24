@@ -28,7 +28,6 @@ const data = {
 };
 
 export function DoughNut({ dataPathForChart }: { dataPathForChart: string }) {
-  console.log("dataPathForChart", dataPathForChart);
   return (
     <Doughnut
       key={dataPathForChart}
@@ -37,6 +36,22 @@ export function DoughNut({ dataPathForChart }: { dataPathForChart: string }) {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
+          datalabels: {
+            display: true,
+            formatter(value, context) {
+              const label = context.chart.data.labels
+                ? context.chart.data.labels[context.dataIndex]
+                : "";
+              return `${label}: ${value}`;
+            },
+            color: "white",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            borderRadius: 5,
+            font: {
+              weight: "bold",
+              size: 16,
+            },
+          },
           tooltip: {
             enabled: true,
             animation: {

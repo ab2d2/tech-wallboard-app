@@ -32,7 +32,7 @@ export const Page = ({
   let DetailsComponent = null;
   if (currentPage.detailsComponent) {
     const DetailsComponentName =
-      ChartComponentsMap[currentPage.summaryComponent];
+      ChartComponentsMap[currentPage.detailsComponent];
     DetailsComponent =
       ChartComponents[DetailsComponentName as keyof typeof ChartComponents];
   }
@@ -44,8 +44,8 @@ export const Page = ({
       >
         <Component dataPathForChart={dataPathForChart} />
       </StyledCategoryOneContainer>
-      <StyledCategoryTwoContainer>
-        {currentPage.detailsComponent !== null && DetailsComponent !== null && (
+      {currentPage.detailsComponent !== null && DetailsComponent !== null && (
+        <StyledCategoryTwoContainer>
           <>
             <h2>{currentPage.levelTwoCategoryName}</h2>
             <DetailsComponent
@@ -53,8 +53,8 @@ export const Page = ({
             />
             <p>{currentPage.dataSourceFilename}</p>
           </>
-        )}
-      </StyledCategoryTwoContainer>
+        </StyledCategoryTwoContainer>
+      )}
     </StyledContainer>
   );
 };

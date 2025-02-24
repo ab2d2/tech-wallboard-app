@@ -5,15 +5,15 @@ import * as ChartComponents from "../Charts";
 
 const ChartComponentsMap: { [key: string]: string } = {
   donutChart: "DoughNut",
-  timeSeriesChart: "DoughNut",
-  multiLineChart: "DoughNut",
-  image: "DoughNut",
+  timeSeriesChart: "PieChart",
+  multiLineChart: "PieChart",
+  image: "CustomImage",
   columnChart: "DoughNut",
-  numericGauge: "DoughNut",
-  areaChart: "DoughNut",
-  smallPieChart: "DoughNut",
-  smallNumericGauge: "DoughNut",
-  smallColumnChart: "DoughNut",
+  numericGauge: "PieChart",
+  areaChart: "PieChart",
+  smallPieChart: "PieChart",
+  smallNumericGauge: "PieChart",
+  smallColumnChart: "PieChart",
 };
 
 export const Page = ({
@@ -21,27 +21,39 @@ export const Page = ({
 }: {
   currentPage: FlattenedCategoryConfig;
 }) => {
-  console.log("Page component, current currentPage is ", currentPage);
+  console.log("Page component, currentPage is ", currentPage);
   const ComponentName = ChartComponentsMap[currentPage.summaryComponent];
   const Component =
     ChartComponents[ComponentName as keyof typeof ChartComponents];
+
+  // pass data as prop to the component
+  const dataPathForChart = currentPage.dataSourceFilename;
+
+  let DetailsComponent = null;
+  if (currentPage.detailsComponent) {
+    const DetailsComponentName =
+      ChartComponentsMap[currentPage.summaryComponent];
+    DetailsComponent =
+      ChartComponents[DetailsComponentName as keyof typeof ChartComponents];
+  }
 
   return (
     <StyledContainer>
       <StyledCategoryOneContainer
         $hasDetailsComponent={currentPage.detailsComponent !== null}
       >
-        <Component />
+        <Component dataPathForChart={dataPathForChart} />
       </StyledCategoryOneContainer>
       <StyledCategoryTwoContainer>
-        levelTwoCategoryName: <h2>{currentPage.levelTwoCategoryName}</h2>
-        detailsComponent:{" "}
-        <p>
-          {currentPage.detailsComponent === null
-            ? "Null"
-            : currentPage.detailsComponent}
-        </p>
-        dataSourceFilename: <p>{currentPage.dataSourceFilename}</p>
+        {currentPage.detailsComponent !== null && DetailsComponent !== null && (
+          <>
+            <h2>{currentPage.levelTwoCategoryName}</h2>
+            <DetailsComponent
+              dataPathForChart={currentPage.dataSourceFilename}
+            />
+            <p>{currentPage.dataSourceFilename}</p>
+          </>
+        )}
       </StyledCategoryTwoContainer>
     </StyledContainer>
   );
@@ -52,14 +64,18 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: space-between;
+  flex-wrap: wrap;
   padding: 1rem;
 `;
 
 export const StyledCategoryOneContainer = styled.div<{
   $hasDetailsComponent: boolean;
 }>`
-  width: ${(props) => (props.$hasDetailsComponent ? "700px" : "1400px")};
+  // width: ${(props) => (props.$hasDetailsComponent ? "700px" : "1400px")};
+  // width: 50%;
+  width: 700px;
+  height: 500px;
+  // height: 80%;
 `;
 const StyledCategoryTwoContainer = styled.div`
   display: flex;

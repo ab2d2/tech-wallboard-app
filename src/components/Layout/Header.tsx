@@ -14,14 +14,14 @@ export const Header = ({
   return (
     <StyledHeader>
       <Logo />
-      <Breadcrumbs
+      <StyledBreadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
         sx={{ color: "#fff" }}
       >
         <h2>{currentPage.levelOneCategoryName}</h2>
         <h2>{currentPage.levelTwoCategoryName}</h2>
-      </Breadcrumbs>
+      </StyledBreadcrumbs>
     </StyledHeader>
   );
 };
@@ -35,4 +35,10 @@ const StyledHeader = styled(AppBar)`
   flex-direction: row;
   gap: 6rem;
   align-items: center;
+`;
+
+export const StyledBreadcrumbs = styled(Breadcrumbs)`
+  @media (max-width: 425px) {
+    font-size: 0.5rem;
+  }
 `;

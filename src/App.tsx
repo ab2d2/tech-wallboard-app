@@ -1,11 +1,21 @@
 import "./App.css";
 import { Layout } from "./components/Layout/Layout";
 import { useEffect, useState } from "react";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+} from "chart.js";
+
 import { Page } from "./components/Pages/page";
 
 import { useStore } from "@tanstack/react-store";
 import { store } from "./store/store";
 import { timers } from "./constants/timers";
+
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale);
 
 function App() {
   // const [config, setConfig] = useState<ScreensConfigData>(

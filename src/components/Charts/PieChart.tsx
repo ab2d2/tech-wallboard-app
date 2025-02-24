@@ -1,36 +1,27 @@
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 
 const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  labels: ["Red", "Orange", "Blue"],
+  // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
   datasets: [
     {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
+      label: "Popularity of colours",
+      data: [55, 23, 96],
+      // you can set indiviual colors for each bar
       backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
         "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
+        "rgba(232, 102, 63, 0.6)",
+        "rgba(38, 9, 181, 0.6)",
       ],
       borderWidth: 1,
     },
   ],
 };
 
-export function DoughNut({ dataPathForChart }: { dataPathForChart: string }) {
+export function PieChart({ dataPathForChart }: { dataPathForChart: string }) {
   console.log("dataPathForChart", dataPathForChart);
   return (
-    <Doughnut
+    <Pie
       key={dataPathForChart}
       data={data}
       options={{

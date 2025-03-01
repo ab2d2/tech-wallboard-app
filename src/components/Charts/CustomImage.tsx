@@ -8,8 +8,8 @@ export function CustomImage({
     <img
       src="../../../public/sample_custom_image.png"
       alt="custom image"
-      width={"70%"}
-      height={"70%"}
+      width={"100%"}
+      height={"100%"}
     />
   );
 }

@@ -73,8 +73,8 @@ export const StyledCategoryOneContainer = styled.div<{
 }>`
   // width: ${(props) => (props.$hasDetailsComponent ? "700px" : "1400px")};
   // width: 50%;
-  width: 700px;
-  height: 500px;
+  // width: 700px;
+  // height: 500px;
   // height: 80%;
 `;
 const StyledCategoryTwoContainer = styled.div`

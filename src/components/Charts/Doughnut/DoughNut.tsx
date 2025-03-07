@@ -1,18 +1,27 @@
 import { Doughnut } from "react-chartjs-2";
 
 const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Test"],
   datasets: [
     {
       label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
+      data: [12, 19, 3, 5, 2, 3, 8],
       backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
+        "#2e94ff",
+        "#08be07",
+        "#F1F9FD",
+        // "#b2ff00",
+        "#F58A1C",
+        "#7AA130",
+        // "#f7ffe5",
+        "#cce3fa",
+        "#f04f29",
+        // "rgba(255, 99, 132, 0.2)",
+        // "rgba(54, 162, 235, 0.2)",
+        // "rgba(255, 206, 86, 0.2)",
+        // "rgba(75, 192, 192, 0.2)",
+        // "rgba(153, 102, 255, 0.2)",
+        // "rgba(255, 159, 64, 0.2)",
       ],
       borderColor: [
         "rgba(255, 99, 132, 1)",

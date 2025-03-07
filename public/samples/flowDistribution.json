@@ -1,0 +1,42 @@
+{
+    "overall": {
+        "keepingTheLightsOn": 20,
+        "featureEnhancements": 10,
+        "developerExperience": 10,
+        "newValue": 60
+    },
+    "teams": [
+        {
+            "team1": {
+                "keepingTheLightsOn": 20,
+                "featureEnhancements": 10,
+                "developerExperience": 10,
+                "newValue": 60
+            }
+        },
+        {
+            "team2": {
+                "keepingTheLightsOn": 20,
+                "featureEnhancements": 10,
+                "developerExperience": 10,
+                "newValue": 60
+            }
+        },
+        {
+            "team3": {
+                "keepingTheLightsOn": 20,
+                "featureEnhancements": 10,
+                "developerExperience": 10,
+                "newValue": 60
+            }
+        },
+        {
+            "team4": {
+                "keepingTheLightsOn": 20,
+                "featureEnhancements": 10,
+                "developerExperience": 10,
+                "newValue": 60
+            }
+        }
+    ]
+}

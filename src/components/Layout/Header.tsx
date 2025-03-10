@@ -35,6 +35,7 @@ const StyledHeader = styled(AppBar)`
   flex-direction: row;
   gap: 6rem;
   align-items: center;
+  position: relative;
 `;
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)`

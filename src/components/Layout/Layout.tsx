@@ -23,6 +23,9 @@ export const Layout = ({
 
 const StyledMain = styled.main`
   display: flex;
+  flex: 1;
+  height: 100%;
+  max-height: 80vh;
   flex-direction: column;
   justify-content: space-between;
 `;

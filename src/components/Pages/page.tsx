@@ -65,7 +65,10 @@ const StyledContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1rem;
+  align-items: center;
+  flex: 1;
+  max-height: 100%;
+  padding: 4rem;
 `;
 
 export const StyledCategoryOneContainer = styled.div<{
@@ -76,10 +79,16 @@ export const StyledCategoryOneContainer = styled.div<{
   // width: 700px;
   // height: 500px;
   // height: 80%;
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 `;
 const StyledCategoryTwoContainer = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  height: 100%;
 `;

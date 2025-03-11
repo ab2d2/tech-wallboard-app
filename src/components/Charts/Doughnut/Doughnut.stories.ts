@@ -7,7 +7,7 @@ import {
   CategoryScale,
 } from "chart.js";
 
-import { DoughNut } from "./DoughNut";
+import { CustomDoughnut } from "./DoughNut";
 
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -15,7 +15,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, ChartDataLabels);
 
 const meta = {
   title: "Example/DoughNut",
-  component: DoughNut,
+  component: CustomDoughnut,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   parameters: {
@@ -23,7 +23,7 @@ const meta = {
     layout: "centered",
   },
   args: {},
-} satisfies Meta<typeof DoughNut>;
+} satisfies Meta<typeof CustomDoughnut>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

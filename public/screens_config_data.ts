@@ -1,13 +1,20 @@
 export interface ScreenItem {
   title: string;
   summaryComponent: string;
-  detailsComponent: string | null;
+  detailsComponent: string | ScreenItem[] | null;
   dataSourceFilename: string;
+}
+
+export interface Component {
+  title: string;
+  type: string;
+  dataPathForChart: string;
 }
 
 export interface Category {
   name: string;
-  items: ScreenItem[];
+  summaryComponent: Component;
+  detailsComponent: Component | Component[] | null;
 }
 
 export interface ScreensConfigData {

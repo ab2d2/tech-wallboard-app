@@ -1,31 +1,39 @@
 import { Pie } from "react-chartjs-2";
+import { Chart } from "../../types";
 
-const data = {
-  labels: ["Red", "Orange", "Blue"],
-  // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-  datasets: [
-    {
-      label: "Popularity of colours",
-      data: [55, 23, 96],
-      // you can set indiviual colors for each bar
-      backgroundColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(232, 102, 63, 0.6)",
-        "rgba(38, 9, 181, 0.6)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
+// const data = {
+//   labels: ["Red", "Orange", "Blue"],
+//   // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+//   datasets: [
+//     {
+//       label: "Popularity of colours",
+//       data: [55, 23, 96],
+//       // you can set indiviual colors for each bar
+//       backgroundColor: [
+//         "rgba(255, 99, 132, 1)",
+//         "rgba(232, 102, 63, 0.6)",
+//         "rgba(38, 9, 181, 0.6)",
+//       ],
+//       borderWidth: 1,
+//     },
+//   ],
+// };
 
-export function PieChart({ dataPathForChart }: { dataPathForChart: string }) {
-  console.log("dataPathForChart", dataPathForChart);
+export function PieChart({ chart }: { chart: Chart }) {
   return (
     <Pie
-      key={dataPathForChart}
-      data={data}
+      data={{
+        labels: chart.data.map(({ label }) => label),
+        datasets: [
+          {
+            label: chart.title,
+            data: chart.data.map(({ value }) => value),
+          },
+        ],
+      }}
       options={{
         responsive: true,
+
         maintainAspectRatio: true,
         plugins: {
           datalabels: {
@@ -52,8 +60,7 @@ export function PieChart({ dataPathForChart }: { dataPathForChart: string }) {
             },
           },
           legend: {
-            display: true,
-            position: "bottom",
+            display: false,
           },
         },
         animation: {

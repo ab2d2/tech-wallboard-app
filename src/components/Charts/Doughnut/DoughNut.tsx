@@ -1,46 +1,18 @@
 import { Doughnut } from "react-chartjs-2";
+import { Chart } from "../../../types";
 
-const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Test"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3, 8],
-      backgroundColor: [
-        "#2e94ff",
-        "#08be07",
-        "#F1F9FD",
-        // "#b2ff00",
-        "#F58A1C",
-        "#7AA130",
-        // "#f7ffe5",
-        "#cce3fa",
-        "#f04f29",
-        // "rgba(255, 99, 132, 0.2)",
-        // "rgba(54, 162, 235, 0.2)",
-        // "rgba(255, 206, 86, 0.2)",
-        // "rgba(75, 192, 192, 0.2)",
-        // "rgba(153, 102, 255, 0.2)",
-        // "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-export function DoughNut({ dataPathForChart }: { dataPathForChart: string }) {
+export function CustomDoughnut({ chart }: { chart: Chart }) {
   return (
     <Doughnut
-      key={dataPathForChart}
-      data={data}
+      data={{
+        labels: chart.data.map(({ label }) => label),
+        datasets: [
+          {
+            label: chart.title,
+            data: chart.data.map(({ value }) => value),
+          },
+        ],
+      }}
       options={{
         responsive: true,
         maintainAspectRatio: true,
@@ -69,8 +41,7 @@ export function DoughNut({ dataPathForChart }: { dataPathForChart: string }) {
             },
           },
           legend: {
-            display: true,
-            position: "bottom",
+            display: false,
           },
         },
         animation: {

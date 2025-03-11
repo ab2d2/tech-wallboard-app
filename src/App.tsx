@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
-import { Page } from "./components/Pages/page";
+import { Page } from "./components/Page/page";
 
 import { useStore } from "@tanstack/react-store";
 import { store } from "./store/store";

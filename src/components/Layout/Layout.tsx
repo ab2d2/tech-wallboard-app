@@ -25,7 +25,7 @@ const StyledMain = styled.main`
   display: flex;
   flex: 1;
   height: 100%;
-  max-height: 80vh;
+  overflow-y: hidden;
   flex-direction: column;
   justify-content: space-between;
 `;

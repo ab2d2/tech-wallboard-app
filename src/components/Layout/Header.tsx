@@ -4,13 +4,9 @@ import { Logo } from "./Logo";
 
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import { FlattenedCategoryConfig } from "../../store/utils";
+import { PageData } from "../../types";
 
-export const Header = ({
-  currentPage,
-}: {
-  currentPage: FlattenedCategoryConfig;
-}) => {
+export const Header = ({ currentPage }: { currentPage: PageData }) => {
   return (
     <StyledHeader>
       <Logo />
@@ -19,16 +15,15 @@ export const Header = ({
         aria-label="breadcrumb"
         sx={{ color: "#fff" }}
       >
-        <h2>{currentPage.levelOneCategoryName}</h2>
-        <h2>{currentPage.levelTwoCategoryName}</h2>
+        {currentPage.categories.map((category) => (
+          <h2 key={category}>{category}</h2>
+        ))}
       </StyledBreadcrumbs>
     </StyledHeader>
   );
 };
 
 const StyledHeader = styled(AppBar)`
-  background-color: #333;
-  color: white;
   padding: 1rem;
   text-align: center;
   display: flex;

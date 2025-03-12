@@ -22,5 +22,5 @@ const StyledChartGrid = styled.div`
 `;
 
 const StyledChartGridItem = styled.div`
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 1.5 / 1;
 `;

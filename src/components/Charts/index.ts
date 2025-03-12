@@ -1,3 +1,3 @@
-export * from "./Doughnut/DoughNut";
-export * from "./PieChart";
+export * from "./Doughnut/Doughnut";
+export * from "./Pie/PieChart";
 export * from "./CustomImage";

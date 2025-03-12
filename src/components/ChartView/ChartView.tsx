@@ -1,21 +1,16 @@
 import { Chart } from "../../types";
 import styled from "@emotion/styled";
 
-import { CustomDoughnut, PieChart } from "../Charts";
+import { CustomDoughnut, CustomPieChart } from "../Charts";
 
 export function ChartView({ chart }: { chart: Chart }) {
-  return (
-    <StyledChartContainer>
-      {renderChart(chart)}
-      <h1>{chart.title}</h1>
-    </StyledChartContainer>
-  );
+  return <StyledChartContainer>{renderChart(chart)}</StyledChartContainer>;
 }
 
 const renderChart = (chart: Chart) => {
   switch (chart.type) {
     case "pie":
-      return <PieChart chart={chart} />;
+      return <CustomPieChart chart={chart} />;
     case "doughnut":
       return <CustomDoughnut chart={chart} />;
     case "bar":
@@ -33,4 +28,8 @@ const StyledChartContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  svg {
+    overflow: visible;
+  }
 `;

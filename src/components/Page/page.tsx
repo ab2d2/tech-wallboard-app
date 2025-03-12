@@ -4,6 +4,7 @@ import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 
 export const Page = ({ currentPage }: { currentPage: PageData }) => {
+  console.log(currentPage);
   return (
     <StyledContainer>
       <StyledCategoryOneContainer>

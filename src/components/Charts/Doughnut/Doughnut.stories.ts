@@ -7,7 +7,7 @@ import {
   CategoryScale,
 } from "chart.js";
 
-import { CustomDoughnut } from "./Doughnut";
+import { CustomDoughnut } from "./DoughNut";
 
 import ChartDataLabels from "chartjs-plugin-datalabels";
 

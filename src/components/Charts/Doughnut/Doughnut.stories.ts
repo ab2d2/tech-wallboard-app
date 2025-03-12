@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -26,10 +26,3 @@ const meta = {
 } satisfies Meta<typeof CustomDoughnut>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const SixItems: Story = {
-  args: {
-    dataPathForChart: "data/6-items.json",
-  },
-};

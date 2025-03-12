@@ -15,6 +15,8 @@ import { Page } from "./components/Page/page";
 import { useStore } from "@tanstack/react-store";
 import { store } from "./store/store";
 import { timers } from "./constants/timers";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./theme/theme";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, ChartDataLabels);
 
@@ -51,11 +53,12 @@ function App() {
   }, [currentPageIndex, storeObj.config.length]);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Layout currentPage={storeObj.config[currentPageIndex]}>
         <Page currentPage={storeObj.config[currentPageIndex]} />
       </Layout>
-    </>
+    </ThemeProvider>
   );
 }
 

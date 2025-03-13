@@ -1,7 +1,7 @@
 import { GlobalStyles } from "@mui/material";
 
 const getFontFaces = () => {
-  const location = `src/theme/fonts`;
+  const location = `/fonts`;
 
   return [
     {

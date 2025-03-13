@@ -7,7 +7,7 @@ export function ChartGrid({ charts }: { charts: Chart[] }) {
   return (
     <StyledChartGrid>
       {charts.map((chart, i) => (
-        <StyledChartGridItem>
+        <StyledChartGridItem key={`grid-chart-${i}`}>
           <ChartView
             chart={chart}
             colour={chartColours[i % chartColours.length]}

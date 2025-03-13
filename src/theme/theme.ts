@@ -1,6 +1,4 @@
-import { createTheme } from "@mui/material";
-import TheGymGroupSansBold from "./fonts/thegymgroupsans-Bold.ttf";
-import TheGymGroupSansHeadline from "./fonts/thegymgroupsans-Headline.ttf";
+import { createTheme, PaletteMode, PaletteOptions } from "@mui/material";
 
 export const pallete = {
   primary: {
@@ -9,39 +7,44 @@ export const pallete = {
   secondary: {
     main: "#0E0066",
   },
-};
+  common: {
+    black: "#000",
+    white: "#fff",
+  },
+  mode: "light" as PaletteMode,
+} satisfies PaletteOptions;
 
 export const theme = createTheme({
   palette: pallete,
   typography: {
     fontFamily: "thegymgroupsans-Bold",
     h1: {
+      color:
+        pallete.mode === "light" ? pallete.common.black : pallete.common.white,
       fontFamily: "thegymgroupsans-Headline",
+      fontWeight: 700,
+      fontSize: "2.5rem",
+      lineHeight: 1.2,
+      marginBottom: "1rem",
     },
     h2: {
+      color:
+        pallete.mode === "light" ? pallete.common.black : pallete.common.white,
       fontFamily: "thegymgroupsans-Headline",
+      fontWeight: 600,
+      fontSize: "2rem",
+      lineHeight: 1.3,
+      marginBottom: "0.75rem",
+    },
+    h3: {
+      fontFamily: "thegymgroupsans-Headline",
+      color:
+        pallete.mode === "light" ? pallete.common.black : pallete.common.white,
+      fontWeight: 500,
+      fontSize: "1.75rem",
+      lineHeight: 1.4,
+      marginBottom: "0.5rem",
     },
   },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'thegymgroupsans-Bold';
-          font-style: normal;
-          font-display: swap;
-          font-weight: 400;
-          src: local('thegymgroupsans-Bold'), url(${TheGymGroupSansBold}) format('ttf');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        },
-        @font-face {
-          font-family: 'thegymgroupsans-Headline';
-          font-style: normal;
-          font-display: swap;
-          font-weight: 400;
-          src: local('thegymgroupsans-Headline'), url(${TheGymGroupSansHeadline}) format('ttf');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        }
-      `,
-    },
-  },
+  components: {},
 });

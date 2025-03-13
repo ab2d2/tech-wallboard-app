@@ -5,6 +5,7 @@ import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
 
 export const Page = ({ currentPage }: { currentPage: PageData }) => {
+  console.log(currentPage);
   return (
     <StyledContainer>
       <StyledCategoryOneContainer>

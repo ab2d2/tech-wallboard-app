@@ -10,7 +10,9 @@ export const Page = ({ currentPage }: { currentPage: PageData }) => {
         {renderElement(currentPage.primaryElement)}
       </StyledCategoryOneContainer>
       {currentPage.secondaryElement && (
-        <StyledCategoryTwoContainer>
+        <StyledCategoryTwoContainer
+          hasMultipleCharts={Array.isArray(currentPage.secondaryElement)}
+        >
           {renderElement(currentPage.secondaryElement)}
         </StyledCategoryTwoContainer>
       )}
@@ -36,7 +38,7 @@ const StyledContainer = styled.div`
   align-items: center;
   flex: 1;
   max-height: 100%;
-  padding: 4rem;
+  padding: 6rem;
   gap: 2rem;
 `;
 
@@ -52,6 +54,8 @@ const StyledChartContainer = styled.div`
 const StyledCategoryOneContainer = styled(StyledChartContainer)`
   flex: 1;
 `;
-const StyledCategoryTwoContainer = styled(StyledChartContainer)`
-  flex: 2;
+const StyledCategoryTwoContainer = styled(StyledChartContainer)<{
+  hasMultipleCharts?: boolean;
+}>`
+  flex: ${({ hasMultipleCharts }) => (hasMultipleCharts ? 2 : 1)};
 `;

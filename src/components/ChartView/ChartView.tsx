@@ -2,6 +2,7 @@ import { Chart } from "../../types";
 import styled from "@emotion/styled";
 
 import { CustomDoughnut, CustomPieChart } from "../Charts";
+import { CustomBarChart } from "../Charts/Bar/BarChart";
 
 export function ChartView({ chart }: { chart: Chart }) {
   return <StyledChartContainer>{renderChart(chart)}</StyledChartContainer>;
@@ -14,6 +15,7 @@ const renderChart = (chart: Chart) => {
     case "doughnut":
       return <CustomDoughnut chart={chart} />;
     case "bar":
+      return <CustomBarChart chart={chart} />;
     case "line":
     default:
       return <div>Unknown chart type</div>;

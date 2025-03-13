@@ -68,4 +68,51 @@ export const pages: PageData[] = [
       },
     ],
   },
+  {
+    categories: ["Delivery", "Flow distribution"],
+    primaryElement: {
+      type: "bar",
+      title: "Overall flow distribution",
+      data: [
+        {
+          label: "Keeping the lights on",
+          value: 20,
+        },
+        {
+          label: "Feature Enhancements",
+          value: 10,
+        },
+        {
+          label: "Developer Experience",
+          value: 10,
+        },
+        {
+          label: "New Value",
+          value: 60,
+        },
+      ],
+    },
+    secondaryElement: {
+      type: "bar",
+      title: "Overall flow distribution",
+      data: [
+        {
+          label: "Keeping the lights on",
+          value: 20,
+        },
+        {
+          label: "Feature Enhancements",
+          value: 10,
+        },
+        {
+          label: "Developer Experience",
+          value: 10,
+        },
+        {
+          label: "New Value",
+          value: 60,
+        },
+      ],
+    },
+  },
 ];

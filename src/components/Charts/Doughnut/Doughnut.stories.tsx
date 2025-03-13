@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Dougnut } from "./Doughnut";
+import { Doughnut } from "./Doughnut";
 
 import { ResponsiveContainer } from "recharts";
 
 const meta = {
   title: "Example/Charts/Doughnut",
-  component: Dougnut,
+  component: Doughnut,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
   args: {},
-} satisfies Meta<typeof Dougnut>;
+} satisfies Meta<typeof Doughnut>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -23,13 +23,13 @@ const data = [
   { label: "C", value: 300 },
 ];
 
-export const Doughnut: Story = {
+export const DoughnutStory: Story = {
   args: {
     data,
   },
   render: ({ data }) => (
     <ResponsiveContainer width={800} height={200}>
-      <Dougnut data={data} />
+      <Doughnut data={data} />
     </ResponsiveContainer>
   ),
 };

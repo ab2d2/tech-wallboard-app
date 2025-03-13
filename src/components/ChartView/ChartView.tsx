@@ -1,7 +1,7 @@
 import { Chart } from "../../types";
 import styled from "@emotion/styled";
 
-import { Dougnut, PieChart } from "../Charts";
+import { Doughnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
 import { ChartColour, chartColours } from "../Charts/contants";
 import { Typography } from "@mui/material";
@@ -28,7 +28,7 @@ const renderChart = ({ data, type }: Chart, colour?: ChartColour) => {
     case "pie":
       return <PieChart data={data} />;
     case "doughnut":
-      return <Dougnut data={data} />;
+      return <Doughnut data={data} />;
     case "bar":
       return <BarChart data={data} colour={colour ?? chartColours[0]} />;
     case "line":

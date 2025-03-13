@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Dougnut } from "./DoughNut";
+import { Dougnut } from "./Doughnut";
 
 import { ResponsiveContainer } from "recharts";
 

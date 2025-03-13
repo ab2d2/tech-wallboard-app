@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import { CustomDoughnut, CustomPieChart } from "../Charts";
 import { CustomBarChart } from "../Charts/Bar/BarChart";
+import { CustomLineChart } from "../Charts/Line/LineChart";
 import { chartColours } from "../Charts/contants";
 
 export function ChartView({
@@ -28,6 +29,7 @@ const renderChart = (chart: Chart, colour?: string) => {
         <CustomBarChart chart={chart} colour={colour ?? chartColours[0]} />
       );
     case "line":
+      return <CustomLineChart chart={chart} />;
     default:
       return <div>Unknown chart type</div>;
   }

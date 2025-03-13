@@ -1,3 +1,3 @@
 export * from "./Doughnut/DoughNut";
 export * from "./Pie/PieChart";
-export * from "./CustomImage";
+export * from "./Bar/BarChart";

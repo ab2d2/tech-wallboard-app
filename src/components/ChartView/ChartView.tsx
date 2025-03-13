@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { CustomDoughnut, CustomPieChart } from "../Charts";
 import { CustomBarChart } from "../Charts/Bar/BarChart";
 import { chartColours } from "../Charts/contants";
+import { Typography } from "@mui/material";
 
 export function ChartView({
   chart,
@@ -13,20 +14,23 @@ export function ChartView({
   colour?: string;
 }) {
   return (
-    <StyledChartContainer>{renderChart(chart, colour)}</StyledChartContainer>
+    <StyledChartContainer>
+      {renderChart(chart, colour)}
+      <Typography variant="h3" component="h3">
+        {chart.title}
+      </Typography>
+    </StyledChartContainer>
   );
 }
 
-const renderChart = (chart: Chart, colour?: string) => {
-  switch (chart.type) {
+const renderChart = ({ data, type }: Chart, colour?: string) => {
+  switch (type) {
     case "pie":
-      return <CustomPieChart chart={chart} />;
+      return <CustomPieChart data={data} />;
     case "doughnut":
-      return <CustomDoughnut chart={chart} />;
+      return <CustomDoughnut data={data} />;
     case "bar":
-      return (
-        <CustomBarChart chart={chart} colour={colour ?? chartColours[0]} />
-      );
+      return <CustomBarChart data={data} colour={colour ?? chartColours[0]} />;
     case "line":
     default:
       return <div>Unknown chart type</div>;
@@ -41,8 +45,4 @@ const StyledChartContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  svg {
-    overflow: visible;
-  }
 `;

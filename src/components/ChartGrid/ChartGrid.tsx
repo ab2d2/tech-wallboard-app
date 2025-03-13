@@ -6,7 +6,7 @@ export function ChartGrid({ charts }: { charts: Chart[] }) {
   return (
     <StyledChartGrid>
       {charts.map((chart) => (
-        <StyledChartGridItem>
+        <StyledChartGridItem key={chart.title}>
           <ChartView chart={chart} />
         </StyledChartGridItem>
       ))}

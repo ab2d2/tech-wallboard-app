@@ -17,6 +17,7 @@ import { store } from "./store/store";
 import { timers } from "./constants/timers";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme/theme";
+import { Fonts } from "./theme/fonts";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, ChartDataLabels);
 
@@ -54,7 +55,8 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
+      <Fonts />
       <Layout currentPage={storeObj.config[currentPageIndex]}>
         <Page currentPage={storeObj.config[currentPageIndex]} />
       </Layout>

@@ -1,4 +1,4 @@
-import { XAxis, Bar, BarChart } from "recharts";
+import { XAxis, Bar, BarChart as RechartBarChart } from "recharts";
 import { baseChartProps, chartColours } from "../contants";
 import { DataPoint } from "../../../types";
 import { ChartContainer } from "../styles";
@@ -12,14 +12,14 @@ export function CustomBarChart({
 }) {
   return (
     <ChartContainer width="100%" height="100%">
-      <BarChart {...baseChartProps} data={data}>
-        <XAxis dataKey="label" tick={{ fontSize: 24, baselineShift: -8 }} />
+      <RechartBarChart {...baseChartProps} data={data}>
+        <XAxis dataKey="label" />
         <Bar
           dataKey="value"
           fill={color ?? chartColours[0]}
           label={{ position: "top", fontSize: 32 }}
         />
-      </BarChart>
+      </RechartBarChart>
     </ChartContainer>
   );
 }

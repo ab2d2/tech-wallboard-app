@@ -1,6 +1,6 @@
 import { Chart } from "../../../types";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import { baseChartProps, colors } from "../contants";
+import { baseChartProps, chartColours } from "../contants";
 import { Typography } from "@mui/material";
 
 export function CustomPieChart({ chart }: { chart: Chart }) {
@@ -21,7 +21,7 @@ export function CustomPieChart({ chart }: { chart: Chart }) {
             {chart.data.map((_entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={colors[index % colors.length]}
+                fill={chartColours[index % chartColours.length]}
               />
             ))}
           </Pie>

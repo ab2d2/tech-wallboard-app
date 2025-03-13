@@ -1,8 +1,8 @@
 import { Chart } from "../../types";
 import styled from "@emotion/styled";
 
-import { CustomDoughnut, CustomPieChart } from "../Charts";
-import { CustomBarChart } from "../Charts/Bar/BarChart";
+import { Dougnut, PieChart } from "../Charts";
+import { BarChart } from "../Charts/Bar/BarChart";
 import { chartColours } from "../Charts/contants";
 import { Typography } from "@mui/material";
 
@@ -26,11 +26,11 @@ export function ChartView({
 const renderChart = ({ data, type }: Chart, colour?: string) => {
   switch (type) {
     case "pie":
-      return <CustomPieChart data={data} />;
+      return <PieChart data={data} />;
     case "doughnut":
-      return <CustomDoughnut data={data} />;
+      return <Dougnut data={data} />;
     case "bar":
-      return <CustomBarChart data={data} colour={colour ?? chartColours[0]} />;
+      return <BarChart data={data} colour={colour ?? chartColours[0]} />;
     case "line":
     default:
       return <div>Unknown chart type</div>;

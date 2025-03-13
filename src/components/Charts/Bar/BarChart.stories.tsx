@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CustomBarChart } from "./BarChart";
+import { BarChart } from "./BarChart";
 import { ResponsiveContainer } from "recharts";
 
 const meta = {
   title: "Example/Charts/BarChart",
-  component: CustomBarChart,
+  component: BarChart,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
   args: {},
-} satisfies Meta<typeof CustomBarChart>;
+} satisfies Meta<typeof BarChart>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -21,13 +21,13 @@ const data = [
   { label: "C", value: 200 },
 ];
 
-export const BarChart: Story = {
+export const Default: Story = {
   args: {
     data,
   },
   render: ({ data }) => (
     <ResponsiveContainer width={800} height={300}>
-      <CustomBarChart data={data} />
+      <BarChart data={data} />
     </ResponsiveContainer>
   ),
 };

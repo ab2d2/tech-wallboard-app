@@ -3,7 +3,7 @@ import { DataPoint } from "../../../types";
 import { baseChartProps, chartColours } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function CustomDoughnut({ data }: { data: DataPoint[] }) {
+export function Dougnut({ data }: { data: DataPoint[] }) {
   return (
     <ChartContainer width="100%" height="100%">
       <PieChart>

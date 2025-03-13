@@ -1,12 +1,12 @@
 import { DataPoint } from "../../../types";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart as RechartPieChart, Pie, Cell } from "recharts";
 import { baseChartProps, chartColours } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function CustomPieChart({ data }: { data: DataPoint[] }) {
+export function PieChart({ data }: { data: DataPoint[] }) {
   return (
     <ChartContainer width="100%" height="100%">
-      <PieChart>
+      <RechartPieChart>
         <Pie
           {...baseChartProps}
           label={({ name, value }) => {
@@ -21,7 +21,7 @@ export function CustomPieChart({ data }: { data: DataPoint[] }) {
             />
           ))}
         </Pie>
-      </PieChart>
+      </RechartPieChart>
     </ChartContainer>
   );
 }

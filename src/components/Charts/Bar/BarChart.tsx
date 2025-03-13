@@ -3,7 +3,7 @@ import { baseChartProps, chartColours } from "../contants";
 import { DataPoint } from "../../../types";
 import { ChartContainer } from "../styles";
 
-export function CustomBarChart({
+export function BarChart({
   data,
   colour: color,
 }: {

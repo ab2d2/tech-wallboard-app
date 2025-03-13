@@ -45,6 +45,15 @@ export const theme = createTheme({
       lineHeight: 1.4,
       marginBottom: "0.5rem",
     },
+    h4: {
+      fontFamily: "thegymgroupsans-Headline",
+      color:
+        pallete.mode === "light" ? pallete.common.black : pallete.common.white,
+      fontWeight: 400,
+      fontSize: "1.25rem",
+      lineHeight: 1.4,
+      marginBottom: "0.25rem",
+    },
   },
   components: {},
 });

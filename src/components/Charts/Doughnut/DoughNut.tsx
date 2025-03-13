@@ -1,6 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { Chart } from "../../../types";
-import { baseChartProps, colors } from "../contants";
+import { baseChartProps, chartColours } from "../contants";
 
 export function CustomDoughnut({ chart }: { chart: Chart }) {
   return (
@@ -16,7 +16,10 @@ export function CustomDoughnut({ chart }: { chart: Chart }) {
           outerRadius="80%"
         >
           {chart.data.map((_entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={chartColours[index % chartColours.length]}
+            />
           ))}
         </Pie>
       </PieChart>

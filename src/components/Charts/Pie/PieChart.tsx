@@ -1,6 +1,6 @@
 import { Chart } from "../../../types";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import { baseChartProps, colors } from "../contants";
+import { baseChartProps, chartColours } from "../contants";
 
 export function CustomPieChart({ chart }: { chart: Chart }) {
   return (
@@ -14,7 +14,10 @@ export function CustomPieChart({ chart }: { chart: Chart }) {
           data={chart.data}
         >
           {chart.data.map((_entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={chartColours[index % chartColours.length]}
+            />
           ))}
         </Pie>
       </PieChart>

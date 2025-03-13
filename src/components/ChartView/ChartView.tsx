@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 import { Dougnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
-import { chartColours } from "../Charts/contants";
+import { ChartColour, chartColours } from "../Charts/contants";
 import { Typography } from "@mui/material";
 
 export function ChartView({
@@ -11,7 +11,7 @@ export function ChartView({
   colour,
 }: {
   chart: Chart;
-  colour?: string;
+  colour?: ChartColour;
 }) {
   return (
     <StyledChartContainer>
@@ -23,7 +23,7 @@ export function ChartView({
   );
 }
 
-const renderChart = ({ data, type }: Chart, colour?: string) => {
+const renderChart = ({ data, type }: Chart, colour?: ChartColour) => {
   switch (type) {
     case "pie":
       return <PieChart data={data} />;

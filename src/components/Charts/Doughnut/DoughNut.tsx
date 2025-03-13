@@ -19,7 +19,7 @@ export function Dougnut({ data }: { data: DataPoint[] }) {
           {data.map((_entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={chartColours[index % chartColours.length]}
+              fill={chartColours[index % chartColours.length].hex}
             />
           ))}
         </Pie>

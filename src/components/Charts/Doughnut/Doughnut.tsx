@@ -1,18 +1,20 @@
+import { Cell, Pie, PieChart } from "recharts";
 import { DataPoint } from "../../../types";
-import { PieChart as RechartPieChart, Pie, Cell } from "recharts";
 import { baseChartProps, chartColours } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function PieChart({ data }: { data: DataPoint[] }) {
+export function Doughnut({ data }: { data: DataPoint[] }) {
   return (
     <ChartContainer width="100%" height="100%">
-      <RechartPieChart>
+      <PieChart>
         <Pie
           {...baseChartProps}
           label={({ name, value }) => {
             return `${name}: ${value}`;
           }}
           data={data}
+          innerRadius="50%"
+          outerRadius="80%"
         >
           {data.map((_entry, index) => (
             <Cell
@@ -21,7 +23,7 @@ export function PieChart({ data }: { data: DataPoint[] }) {
             />
           ))}
         </Pie>
-      </RechartPieChart>
+      </PieChart>
     </ChartContainer>
   );
 }

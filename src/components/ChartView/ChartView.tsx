@@ -1,8 +1,9 @@
 import { Chart } from "../../types";
 import styled from "@emotion/styled";
-
 import { Doughnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
+import { LineChart } from "../Charts/Line/LineChart";
+
 import { ChartColour, chartColours } from "../Charts/contants";
 import { Typography } from "@mui/material";
 
@@ -32,6 +33,8 @@ const renderChart = ({ data, type }: Chart, colour?: ChartColour) => {
     case "bar":
       return <BarChart data={data} colour={colour ?? chartColours[0]} />;
     case "line":
+      return <LineChart data={data} />;
+
     default:
       return <div>Unknown chart type</div>;
   }

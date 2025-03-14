@@ -1,8 +1,7 @@
 export interface DataPoint {
   label: string;
-  value: number;
+  [key: string]: string | number;
 }
-
 export type ChartType = "bar" | "pie" | "line" | "doughnut";
 
 export interface Chart {

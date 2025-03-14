@@ -15,18 +15,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const data = [
-  { label: "A", value: 400 },
-  { label: "B", value: 300 },
-  { label: "C", value: 200 },
+const multiLineData = [
+  { label: "Jan", Line1: 400, Line2: 350, Line3: 300, Line4: 450, Line5: 500 },
+  { label: "Feb", Line1: 300, Line2: 400, Line3: 250, Line4: 500, Line5: 550 },
+  { label: "Mar", Line1: 200, Line2: 300, Line3: 350, Line4: 400, Line5: 450 },
+  { label: "Apr", Line1: 100, Line2: 200, Line3: 450, Line4: 350, Line5: 400 },
 ];
 
-export const Default: Story = {
+export const FiveLines: Story = {
   args: {
-    data,
+    data: multiLineData,
   },
   render: ({ data }) => (
-    <ResponsiveContainer width={800} height={300}>
+    <ResponsiveContainer width={800} height={400}>
       <LineChart data={data} />
     </ResponsiveContainer>
   ),

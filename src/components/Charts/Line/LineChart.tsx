@@ -8,14 +8,14 @@ import {
   CartesianGrid,
 } from "recharts";
 import { baseChartProps, ChartColour, chartColours } from "../contants";
-import { MultiLineDataPoint } from "../../../types";
+import { DataPoint } from "../../../types";
 import { ChartContainer } from "../styles";
 
 export function LineChart({
   data,
   colour: color,
 }: {
-  data: MultiLineDataPoint[];
+  data: DataPoint[];
   colour?: ChartColour;
 }) {
   if (!data || data.length === 0) return null;

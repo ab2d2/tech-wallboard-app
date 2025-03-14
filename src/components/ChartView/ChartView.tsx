@@ -1,6 +1,6 @@
 import { Chart } from "../../types";
 import styled from "@emotion/styled";
-
+import { DataPoint, MultiLineDataPoint } from "../../types"; 
 import { Doughnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
 import { LineChart } from "../Charts/Line/LineChart";
@@ -28,13 +28,13 @@ export function ChartView({
 const renderChart = ({ data, type }: Chart, colour?: ChartColour) => {
   switch (type) {
     case "pie":
-      return <PieChart data={data} />;
+      return <PieChart data={data as DataPoint[]} />;
     case "doughnut":
-      return <Doughnut data={data} />;
+      return <Doughnut data={data as DataPoint[]} />;
     case "bar":
-      return <BarChart data={data} colour={colour ?? chartColours[0]} />;
+      return <BarChart data={data as DataPoint[]} colour={colour ?? chartColours[0]} />;
     case "line":
-      return <LineChart data={data}/>;
+      return <LineChart data={data as MultiLineDataPoint[]} />;
 
     default:
       return <div>Unknown chart type</div>;

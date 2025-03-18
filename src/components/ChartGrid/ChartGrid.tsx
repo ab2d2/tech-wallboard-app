@@ -3,13 +3,20 @@ import styled from "@emotion/styled";
 import { ChartView } from "../ChartView/ChartView";
 import { chartColours } from "../Charts/contants";
 
-export function ChartGrid({ charts }: { charts: Chart[] }) {
+export function ChartGrid({
+  charts,
+  animate,
+}: {
+  charts: Chart[];
+  animate?: boolean;
+}) {
   return (
     <StyledChartGrid>
       {charts.map((chart, i) => (
         <StyledChartGridItem key={`grid-chart-${i}`}>
           <ChartView
             chart={chart}
+            animate={animate}
             colour={chartColours[i % chartColours.length]}
           />
         </StyledChartGridItem>

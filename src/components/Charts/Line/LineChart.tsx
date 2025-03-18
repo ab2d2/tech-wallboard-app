@@ -10,7 +10,7 @@ import {
 import { baseChartProps, chartColours, ChartProperties } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function LineChart({ data, colour: color }: ChartProperties) {
+export function LineChart({ data, colour, animate }: ChartProperties) {
   if (!data || data.length === 0) return null;
 
   const keys = Object.keys(data[0]).filter((key) => key !== "label");
@@ -25,10 +25,13 @@ export function LineChart({ data, colour: color }: ChartProperties) {
         <Legend />
         {keys.map((key, index) => (
           <Line
+            isAnimationActive={animate}
             key={key}
             type="monotone"
             dataKey={key}
-            stroke={color?.hex ?? chartColours[index % chartColours.length].hex}
+            stroke={
+              colour?.hex ?? chartColours[index % chartColours.length].hex
+            }
             strokeWidth={2}
           />
         ))}

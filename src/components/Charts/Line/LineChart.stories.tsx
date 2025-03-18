@@ -25,10 +25,11 @@ const multiLineData = [
 export const FiveLines: Story = {
   args: {
     data: multiLineData,
+    animate: true,
   },
-  render: ({ data }) => (
+  render: ({ data, animate }) => (
     <ResponsiveContainer width={800} height={400}>
-      <LineChart data={data} />
+      <LineChart data={data} animate={animate} />
     </ResponsiveContainer>
   ),
 };

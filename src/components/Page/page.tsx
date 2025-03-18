@@ -35,7 +35,7 @@ const renderElement = (
   if (typeof element === "string") {
     return <img src={element} />;
   } else if (Array.isArray(element)) {
-    return <ChartGrid charts={element} />;
+    return <ChartGrid charts={element} animate={active} />;
   } else {
     let colour;
     switch (position) {
@@ -46,7 +46,7 @@ const renderElement = (
         colour = chartColours[1];
         break;
     }
-    return <ChartView chart={element} colour={colour} />;
+    return <ChartView chart={element} colour={colour} animate={active} />;
   }
 };
 

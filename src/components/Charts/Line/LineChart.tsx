@@ -7,7 +7,12 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
-import { baseChartProps, chartColours, ChartProperties } from "../contants";
+import {
+  baseChartProps,
+  chartAnimationProps,
+  chartColours,
+  ChartProperties,
+} from "../contants";
 import { ChartContainer } from "../styles";
 
 export function LineChart({ data, colour, animate }: ChartProperties) {
@@ -26,6 +31,7 @@ export function LineChart({ data, colour, animate }: ChartProperties) {
         {keys.map((key, index) => (
           <Line
             isAnimationActive={animate}
+            {...chartAnimationProps}
             key={key}
             type="monotone"
             dataKey={key}

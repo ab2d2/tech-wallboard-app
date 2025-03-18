@@ -1,5 +1,10 @@
 import { XAxis, Bar, BarChart as RechartBarChart } from "recharts";
-import { baseChartProps, chartColours, ChartProperties } from "../contants";
+import {
+  baseChartProps,
+  chartAnimationProps,
+  chartColours,
+  ChartProperties,
+} from "../contants";
 
 import { ChartContainer } from "../styles";
 
@@ -9,6 +14,7 @@ export function BarChart({ data, colour: color, animate }: ChartProperties) {
       <RechartBarChart {...baseChartProps} data={data}>
         <XAxis dataKey="label" />
         <Bar
+          {...chartAnimationProps}
           isAnimationActive={animate}
           dataKey="value"
           fill={color?.hex ?? chartColours[0].hex}

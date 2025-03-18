@@ -1,5 +1,10 @@
 import { PieChart as RechartPieChart, Pie, Cell } from "recharts";
-import { baseChartProps, chartColours, ChartProperties } from "../contants";
+import {
+  baseChartProps,
+  chartAnimationProps,
+  chartColours,
+  ChartProperties,
+} from "../contants";
 import { ChartContainer } from "../styles";
 
 export function PieChart({ data, animate }: ChartProperties) {
@@ -9,6 +14,7 @@ export function PieChart({ data, animate }: ChartProperties) {
         <Pie
           isAnimationActive={animate}
           {...baseChartProps}
+          {...chartAnimationProps}
           label={({ name, value }) => {
             return `${name}: ${value}`;
           }}

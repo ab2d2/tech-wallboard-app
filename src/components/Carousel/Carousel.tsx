@@ -19,6 +19,8 @@ export function Carousel({
           slidesToSlide: 1,
         },
       }}
+      swipeable={false}
+      draggable={false}
       arrows={false}
       infinite
     >

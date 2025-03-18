@@ -24,3 +24,7 @@ export const chartColours: ChartColour[] = [
   { name: "purple", hex: "#9467bd" },
   { name: "brown", hex: "#8c564b" },
 ];
+
+export const chartAnimationProps = {
+  animationDuration: 1000,
+};

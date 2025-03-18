@@ -1,5 +1,10 @@
 import { Cell, Pie, PieChart } from "recharts";
-import { baseChartProps, chartColours, ChartProperties } from "../contants";
+import {
+  baseChartProps,
+  chartAnimationProps,
+  chartColours,
+  ChartProperties,
+} from "../contants";
 import { ChartContainer } from "../styles";
 
 export function Doughnut({ data, animate }: ChartProperties) {
@@ -8,6 +13,7 @@ export function Doughnut({ data, animate }: ChartProperties) {
       <PieChart>
         <Pie
           {...baseChartProps}
+          {...chartAnimationProps}
           label={({ name, value }) => {
             return `${name}: ${value}`;
           }}

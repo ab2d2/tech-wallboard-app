@@ -1,9 +1,8 @@
 import { Cell, Pie, PieChart } from "recharts";
-import { DataPoint } from "../../../types";
-import { baseChartProps, chartColours } from "../contants";
+import { baseChartProps, chartColours, ChartProperties } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function Doughnut({ data }: { data: DataPoint[] }) {
+export function Doughnut({ data }: ChartProperties) {
   return (
     <ChartContainer width="100%" height="100%">
       <PieChart>

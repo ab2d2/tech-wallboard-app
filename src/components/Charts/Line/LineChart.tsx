@@ -7,17 +7,10 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
-import { baseChartProps, ChartColour, chartColours } from "../contants";
-import { DataPoint } from "../../../types";
+import { baseChartProps, chartColours, ChartProperties } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function LineChart({
-  data,
-  colour: color,
-}: {
-  data: DataPoint[];
-  colour?: ChartColour;
-}) {
+export function LineChart({ data, colour: color }: ChartProperties) {
   if (!data || data.length === 0) return null;
 
   const keys = Object.keys(data[0]).filter((key) => key !== "label");

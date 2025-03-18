@@ -25,10 +25,11 @@ const data = [
 export const Default: Story = {
   args: {
     data,
+    animate: true,
   },
-  render: ({ data }) => (
+  render: ({ data, animate }) => (
     <ResponsiveContainer width={800} height={200}>
-      <PieChart data={data} />
+      <PieChart data={data} animate={animate} />
     </ResponsiveContainer>
   ),
 };

@@ -52,7 +52,8 @@ function App() {
       setCurrentPageIndex(
         (prevIndex) => (prevIndex + 1) % storeObj.config.length || 0
       );
-      carouselRef.current?.next(currentPageIndex);
+      // @ts-expect-error the `next` function does not actually need an argument and works as intended without one
+      carouselRef.current?.next();
     }, timers.secondsPerPage * 1000);
 
     return () => clearInterval(interval);

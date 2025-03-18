@@ -4,25 +4,34 @@ import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
 
-export const Page = ({ currentPage }: { currentPage: PageData }) => {
-  console.log(currentPage);
+export const Page = ({
+  currentPage,
+  active,
+}: {
+  currentPage: PageData;
+  active: boolean;
+}) => {
   return (
     <StyledContainer>
       <StyledCategoryOneContainer>
-        {renderElement(currentPage.primaryElement, "primary")}
+        {renderElement(currentPage.primaryElement, "primary", active)}
       </StyledCategoryOneContainer>
       {currentPage.secondaryElement && (
         <StyledCategoryTwoContainer
           hasMultipleCharts={Array.isArray(currentPage.secondaryElement)}
         >
-          {renderElement(currentPage.secondaryElement, "secondary")}
+          {renderElement(currentPage.secondaryElement, "secondary", active)}
         </StyledCategoryTwoContainer>
       )}
     </StyledContainer>
   );
 };
 
-const renderElement = (element: PageElement, position: ElementPosition) => {
+const renderElement = (
+  element: PageElement,
+  position: ElementPosition,
+  active: boolean
+) => {
   if (typeof element === "string") {
     return <img src={element} />;
   } else if (Array.isArray(element)) {
@@ -53,15 +62,15 @@ const StyledContainer = styled.div`
   max-height: 100%;
   padding: 6rem;
   gap: 2rem;
+  height: 100%;
 `;
 
 const StyledChartContainer = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 `;
 
 const StyledCategoryOneContainer = styled(StyledChartContainer)`

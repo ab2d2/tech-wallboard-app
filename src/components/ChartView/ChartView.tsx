@@ -4,19 +4,21 @@ import { Doughnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
 import { LineChart } from "../Charts/Line/LineChart";
 
-import { ChartColour, chartColours } from "../Charts/contants";
+import { ChartColour, chartColours, ChartProperties } from "../Charts/contants";
 import { Typography } from "@mui/material";
 
 export function ChartView({
   chart,
   colour,
+  animate,
 }: {
   chart: Chart;
   colour?: ChartColour;
+  animate?: boolean;
 }) {
   return (
     <StyledChartContainer>
-      {renderChart(chart, colour)}
+      {renderChart(chart, colour, animate)}
       <Typography variant="h3" component="h3">
         {chart.title}
       </Typography>
@@ -24,16 +26,26 @@ export function ChartView({
   );
 }
 
-const renderChart = ({ data, type }: Chart, colour?: ChartColour) => {
+const renderChart = (
+  { data, type }: Chart,
+  colour?: ChartColour,
+  animate?: boolean
+) => {
+  const properties: ChartProperties = {
+    data,
+    colour: colour ?? chartColours[0],
+    animate,
+  };
+
   switch (type) {
     case "pie":
-      return <PieChart data={data} />;
+      return <PieChart {...properties} />;
     case "doughnut":
-      return <Doughnut data={data} />;
+      return <Doughnut {...properties} />;
     case "bar":
-      return <BarChart data={data} colour={colour ?? chartColours[0]} />;
+      return <BarChart {...properties} />;
     case "line":
-      return <LineChart data={data} />;
+      return <LineChart {...properties} />;
 
     default:
       return <div>Unknown chart type</div>;

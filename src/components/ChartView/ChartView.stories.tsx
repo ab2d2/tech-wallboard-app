@@ -28,10 +28,11 @@ export const Default: Story = {
       type: "bar",
       data,
     },
+    animate: true,
   },
-  render: ({ chart }) => (
+  render: ({ chart, animate }) => (
     <ResponsiveContainer width={800} height={300}>
-      <ChartView chart={chart} />
+      <ChartView chart={chart} animate={animate} />
     </ResponsiveContainer>
   ),
 };

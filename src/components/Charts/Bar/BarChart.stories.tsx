@@ -24,10 +24,11 @@ const data = [
 export const Default: Story = {
   args: {
     data,
+    animate: true,
   },
-  render: ({ data }) => (
+  render: ({ data, animate }) => (
     <ResponsiveContainer width={800} height={300}>
-      <BarChart data={data} />
+      <BarChart data={data} animate={animate} />
     </ResponsiveContainer>
   ),
 };

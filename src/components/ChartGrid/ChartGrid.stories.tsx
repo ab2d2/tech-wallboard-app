@@ -23,6 +23,7 @@ const data = [
 
 export const Default: Story = {
   args: {
+    animate: true,
     charts: [
       {
         title: "Example Chart 1",
@@ -41,13 +42,13 @@ export const Default: Story = {
       },
     ],
   },
-  render: ({ charts }) => (
+  render: ({ charts, animate }) => (
     <ResponsiveContainer
       width={800}
       height={"100%"}
       style={{ padding: "4rem" }}
     >
-      <ChartGrid charts={charts} />
+      <ChartGrid charts={charts} animate={animate} />
     </ResponsiveContainer>
   ),
 };

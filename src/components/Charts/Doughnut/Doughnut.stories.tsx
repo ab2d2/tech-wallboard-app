@@ -26,10 +26,11 @@ const data = [
 export const DoughnutStory: Story = {
   args: {
     data,
+    animate: true,
   },
-  render: ({ data }) => (
+  render: ({ data, animate }) => (
     <ResponsiveContainer width={800} height={200}>
-      <Doughnut data={data} />
+      <Doughnut data={data} animate={animate} />
     </ResponsiveContainer>
   ),
 };

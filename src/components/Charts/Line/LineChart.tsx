@@ -7,17 +7,15 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
-import { baseChartProps, ChartColour, chartColours } from "../contants";
-import { DataPoint } from "../../../types";
+import {
+  baseChartProps,
+  chartAnimationProps,
+  chartColours,
+  ChartProperties,
+} from "../contants";
 import { ChartContainer } from "../styles";
 
-export function LineChart({
-  data,
-  colour: color,
-}: {
-  data: DataPoint[];
-  colour?: ChartColour;
-}) {
+export function LineChart({ data, colour, animate }: ChartProperties) {
   if (!data || data.length === 0) return null;
 
   const keys = Object.keys(data[0]).filter((key) => key !== "label");
@@ -32,10 +30,14 @@ export function LineChart({
         <Legend />
         {keys.map((key, index) => (
           <Line
+            isAnimationActive={animate}
+            {...chartAnimationProps}
             key={key}
             type="monotone"
             dataKey={key}
-            stroke={color?.hex ?? chartColours[index % chartColours.length].hex}
+            stroke={
+              colour?.hex ?? chartColours[index % chartColours.length].hex
+            }
             strokeWidth={2}
           />
         ))}

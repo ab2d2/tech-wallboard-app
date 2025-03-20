@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PageData, PageElement } from "../../types";
+import { PageConfig, PageElement } from "../../types";
 import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
@@ -8,7 +8,7 @@ export const Page = ({
   currentPage,
   active,
 }: {
-  currentPage: PageData;
+  currentPage: PageConfig;
   active: boolean;
 }) => {
   return (

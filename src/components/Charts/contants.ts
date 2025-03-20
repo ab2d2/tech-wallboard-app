@@ -27,4 +27,5 @@ export const chartColours: ChartColour[] = [
 
 export const chartAnimationProps = {
   animationDuration: 1000,
+  animationBegin: 250,
 };

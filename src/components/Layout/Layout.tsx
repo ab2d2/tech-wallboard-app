@@ -3,14 +3,14 @@ import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { PageData } from "../../types";
+import { PageConfig } from "../../types";
 
 export const Layout = ({
   children,
   currentPage,
 }: {
   children: ReactNode;
-  currentPage: PageData;
+  currentPage: PageConfig;
 }) => {
   return (
     <>

@@ -15,7 +15,7 @@ import {
 } from "../contants";
 import { ChartContainer } from "../styles";
 
-export function LineChart({ data, colour, animate }: ChartProperties) {
+export function LineChart({ data, animate }: ChartProperties) {
   if (!data || data.length === 0) return null;
 
   const keys = Object.keys(data[0]).filter((key) => key !== "label");
@@ -36,7 +36,7 @@ export function LineChart({ data, colour, animate }: ChartProperties) {
             type="monotone"
             dataKey={key}
             stroke={
-              colour?.hex ?? chartColours[index % chartColours.length].hex
+              chartColours[index % chartColours.length].hex
             }
             strokeWidth={2}
           />

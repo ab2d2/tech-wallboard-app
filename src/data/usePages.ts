@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getConfig } from "../api/get-config";
+import { getPages } from "../api/get-pages";
 import { PageStore, pageStore } from "./store";
 import { useStore } from "@tanstack/react-store";
 
 export function usePages() {
   const { data, isPending, error } = useQuery({
     queryKey: ["config"],
-    queryFn: getConfig,
+    queryFn: getPages,
   });
   const store = useStore(pageStore);
 

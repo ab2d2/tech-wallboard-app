@@ -6,6 +6,8 @@ import { Fonts } from "./theme/fonts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Pages from "./components/Pages/Pages";
 import { usePages } from "./data/usePages";
+import { Loading } from "./components/Loading/Loading";
+import { Error } from "./components/Error/Error";
 
 const queryClient = new QueryClient();
 
@@ -31,10 +33,10 @@ function Main() {
   }
 
   if (isPending) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error {error.message}</div>;
+    return <Error message={error.message} />;
   }
 }

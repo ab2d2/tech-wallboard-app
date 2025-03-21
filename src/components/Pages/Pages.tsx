@@ -27,7 +27,7 @@ export default function Pages({ pages }: { pages: PageConfig[] }) {
         {pages.map((page, index) => (
           <Page
             key={index}
-            currentPage={page}
+            initialPage={page}
             active={index === currentPageIndex}
           />
         ))}

@@ -3,24 +3,27 @@ import { PageConfig, PageElement } from "../../types";
 import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
+import { usePage } from "../../data/usePage";
 
 export const Page = ({
-  currentPage,
+  initialPage,
   active,
 }: {
-  currentPage: PageConfig;
+  initialPage: PageConfig;
   active: boolean;
 }) => {
+  const page = usePage(initialPage);
+
   return (
     <StyledContainer>
       <StyledCategoryOneContainer>
-        {renderElement(currentPage.primaryElement, "primary", active)}
+        {renderElement(page.primaryElement, "primary", active)}
       </StyledCategoryOneContainer>
-      {currentPage.secondaryElement && (
+      {page.secondaryElement && (
         <StyledCategoryTwoContainer
-          hasMultipleCharts={Array.isArray(currentPage.secondaryElement)}
+          hasMultipleCharts={Array.isArray(page.secondaryElement)}
         >
-          {renderElement(currentPage.secondaryElement, "secondary", active)}
+          {renderElement(page.secondaryElement, "secondary", active)}
         </StyledCategoryTwoContainer>
       )}
     </StyledContainer>

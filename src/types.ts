@@ -12,7 +12,9 @@ export interface Chart {
 
 export type PageElement = Chart | Chart[] | string;
 
-export interface PageData {
+export interface PageConfig {
+  id: string;
+  webSocketUrl?: string;
   categories: string[];
   primaryElement: PageElement;
   secondaryElement?: PageElement;

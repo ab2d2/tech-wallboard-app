@@ -1,8 +1,9 @@
-import { PageData } from "../types";
+import { PageConfig } from "../types";
 
-export const pages: PageData[] = [
+export const pages: PageConfig[] = [
   {
     categories: ["Delivery", "Flow distribution"],
+    id: "1",
     primaryElement: {
       type: "doughnut",
       title: "Overall flow distribution",
@@ -70,6 +71,7 @@ export const pages: PageData[] = [
   },
   {
     categories: ["Delivery", "Flow distribution"],
+    id: "2",
     primaryElement: {
       type: "bar",
       title: "Overall flow distribution",
@@ -117,6 +119,7 @@ export const pages: PageData[] = [
   },
   {
     categories: ["Delivery", "Flow distribution"],
+    id: "3",
     primaryElement: {
       type: "doughnut",
       title: "Overall flow distribution",
@@ -184,6 +187,7 @@ export const pages: PageData[] = [
   },
   {
     categories: ["Delivery", "Velocity"],
+    id: "4",
     primaryElement: {
       type: "line",
       title: "Overall Flow Distribution",
@@ -197,13 +201,29 @@ export const pages: PageData[] = [
   },
   {
     categories: ["Delivery", "Velocity"],
+    id: "5",
     primaryElement: {
       type: "line",
       title: "Overall Flow Distribution",
       data: [
-        { label: "Keeping the lights on", Delivery: 20, Velocity: 15, value: 40 },
-        { label: "Feature Enhancements", Delivery: 10, Velocity: 25, value: 50 },
-        { label: "Developer Experience", Delivery: 10, Velocity: 30, value: 80 },
+        {
+          label: "Keeping the lights on",
+          Delivery: 20,
+          Velocity: 15,
+          value: 40,
+        },
+        {
+          label: "Feature Enhancements",
+          Delivery: 10,
+          Velocity: 25,
+          value: 50,
+        },
+        {
+          label: "Developer Experience",
+          Delivery: 10,
+          Velocity: 30,
+          value: 80,
+        },
         { label: "New Value", Delivery: 60, Velocity: 50, value: 100 },
       ],
     },

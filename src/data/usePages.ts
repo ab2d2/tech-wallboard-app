@@ -1,25 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPages } from "../api/get-pages";
-import { PageStore, pageStore } from "./store";
-import { useStore } from "@tanstack/react-store";
+import { getPages } from "./api";
+import { getLocalPages, setLocalPages } from "./local-storage";
 
 export function usePages() {
   const { data, isPending, error } = useQuery({
     queryKey: ["config"],
     queryFn: getPages,
   });
-  const store = useStore(pageStore);
-
+  console.log(data);
   // If the api is successful, update the store
-  // TODO: remove react-store, implement local file storage
   if (data) {
-    pageStore.setState(() => {
-      const pageMap = data.reduce((acc: PageStore, page) => {
-        acc[page.id] = page;
-        return acc;
-      }, {});
-      return pageMap;
-    });
+    setLocalPages(data);
   }
 
   if (error) {
@@ -28,7 +19,7 @@ export function usePages() {
 
   return {
     isPending,
-    data: data ?? (store ? Object.values(store) : undefined),
+    data: data ?? getLocalPages(),
     error,
   };
 }

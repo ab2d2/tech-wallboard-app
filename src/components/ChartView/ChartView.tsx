@@ -6,6 +6,7 @@ import { LineChart } from "../Charts/Line/LineChart";
 
 import { ChartColour, chartColours, ChartProperties } from "../Charts/contants";
 import { Typography } from "@mui/material";
+import { RadarChart } from "../Charts/Radar/RadarChart";
 
 export function ChartView({
   chart,
@@ -46,7 +47,8 @@ const renderChart = (
       return <BarChart {...properties} />;
     case "line":
       return <LineChart {...properties} />;
-
+    case "radar":
+      return <RadarChart {...properties} />;
     default:
       return <div>Unknown chart type</div>;
   }

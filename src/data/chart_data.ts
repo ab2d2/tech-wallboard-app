@@ -188,10 +188,10 @@ export const pages: PageData[] = [
       type: "line",
       title: "Overall Flow Distribution",
       data: [
-        { label: "Keeping the lights on", Delivery: 20, Velocity: 15 },
-        { label: "Feature Enhancements", Delivery: 10, Velocity: 25 },
-        { label: "Developer Experience", Delivery: 10, Velocity: 30 },
-        { label: "New Value", Delivery: 60, Velocity: 50 },
+        { label: "Keeping the lights on", Delivery: 20, Velocity: 15, value: 35  },
+        { label: "Feature Enhancements", Delivery: 10, Velocity: 25, value: 30 },
+        { label: "Developer Experience", Delivery: 10, Velocity: 30, value: 20 },
+        { label: "New Value", Delivery: 60, Velocity: 50, value:40 },
       ],
     },
   },
@@ -249,5 +249,18 @@ export const pages: PageData[] = [
         ],
       },
     ],
+  },
+  {
+    categories: ["Delivery", "Velocity"],
+    primaryElement: {
+      type: "radar",
+      title: "Overall Flow Distribution",
+      data: [
+        { label: "Keeping the lights on", Delivery: 20, Velocity: 15, value: 35  },
+        { label: "Feature Enhancements", Delivery: 10, Velocity: 25, value: 30 },
+        { label: "Developer Experience", Delivery: 10, Velocity: 30, value: 20 },
+        { label: "New Value", Delivery: 60, Velocity: 50, value:40 },
+      ],
+    },
   },
 ];

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Doughnut, PieChart } from "../Charts";
 import { BarChart } from "../Charts/Bar/BarChart";
 import { LineChart } from "../Charts/Line/LineChart";
-
+import { FunnelChart } from "../Charts/Funnel/FunnelChart";
 import { ChartColour, chartColours, ChartProperties } from "../Charts/contants";
 import { Typography } from "@mui/material";
 import { RadarChart } from "../Charts/Radar/RadarChart";
@@ -49,6 +49,9 @@ const renderChart = (
       return <LineChart {...properties} />;
     case "radar":
       return <RadarChart {...properties} />;
+    case "funnel":
+      return <FunnelChart {...properties} />;
+
     default:
       return <div>Unknown chart type</div>;
   }

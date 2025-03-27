@@ -263,4 +263,18 @@ export const pages: PageData[] = [
       ],
     },
   },
+  {
+    categories: ["Delivery", "Velocity"],
+    primaryElement: {
+      type: "funnel",
+      title: "conversion",
+      data: [
+        { label: "Impressions", value: 1230 },
+        { label: "Clicks", value: 920 },
+        { label: "Visits", value: 569 },
+        { label: "Orders", value: 400 },
+        { label: "Revenue", value: 283 },
+      ],
+    },
+  },
 ];

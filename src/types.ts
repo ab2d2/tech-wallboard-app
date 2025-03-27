@@ -2,7 +2,7 @@ export interface DataPoint {
   label: string;
   [key: string]: string | number;
 }
-export type ChartType = "bar" | "pie" | "line" | "doughnut"| "radar"|"funnel";
+export type ChartType = "bar" | "pie" | "line" | "doughnut"| "radar"|"funnel"| "area";
 
 export interface Chart {
   title: string;

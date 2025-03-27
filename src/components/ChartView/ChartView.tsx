@@ -7,6 +7,7 @@ import { FunnelChart } from "../Charts/Funnel/FunnelChart";
 import { ChartColour, chartColours, ChartProperties } from "../Charts/contants";
 import { Typography } from "@mui/material";
 import { RadarChart } from "../Charts/Radar/RadarChart";
+import {AreaChart} from "../Charts/Area/AreaChart";
 
 export function ChartView({
   chart,
@@ -51,6 +52,8 @@ const renderChart = (
       return <RadarChart {...properties} />;
     case "funnel":
       return <FunnelChart {...properties} />;
+    case "area":
+      return <AreaChart {...properties} />;
 
     default:
       return <div>Unknown chart type</div>;

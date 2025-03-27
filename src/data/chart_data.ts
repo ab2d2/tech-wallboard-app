@@ -267,13 +267,29 @@ export const pages: PageData[] = [
     categories: ["Delivery", "Velocity"],
     primaryElement: {
       type: "funnel",
-      title: "conversion",
+      title: "Overall Flow Distribution",
       data: [
         { label: "Impressions", value: 1230 },
         { label: "Clicks", value: 920 },
         { label: "Visits", value: 569 },
         { label: "Orders", value: 400 },
         { label: "Revenue", value: 283 },
+      ],
+    },
+  },
+  {
+    categories: ["Delivery", "Velocity"],
+    primaryElement: {
+      type: "area",
+      title: "Overall Flow Distribution",
+      data: [
+        { label: "A", Area1: 400, Area2: 600},
+        { label: "B", Area1: 300, Area2: 500},
+        { label: "C", Area1: 200, Area2: 200},
+        { label: "D", Area1: 100, Area2: -100},
+        { label: "E", Area1: 500, Area2: -50},
+        { label: "F", Area1: 600, Area2: -200},
+        { label: "G", Area1: 700, Area2: 0}
       ],
     },
   },

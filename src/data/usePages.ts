@@ -1,25 +1,41 @@
-import { useQuery } from "@tanstack/react-query";
-import { getPages } from "./api";
 import { getLocalPages, setLocalPages } from "./local-storage";
+import { PageConfig } from "../types";
+import useWebSocket, { ReadyState } from "react-use-websocket";
+import { useCallback, useEffect } from "react";
 
-export function usePages() {
-  const { data, isPending, error } = useQuery({
-    queryKey: ["config"],
-    queryFn: getPages,
-  });
-  console.log(data);
-  // If the api is successful, update the store
+export function usePages(): {
+  pages: PageConfig[] | undefined;
+  isLoading: boolean;
+} {
+  const { lastJsonMessage, sendMessage, readyState } = useWebSocket<
+    PageConfig[]
+  >(
+    "ws://127.0.0.1:1880/ws/config",
+    {
+      onError: (error) => console.error(error),
+      shouldReconnect: () => true,
+      reconnectAttempts: 10,
+      reconnectInterval: 1000,
+    },
+    true
+  );
+
+  const requestPages = useCallback(() => sendMessage(""), [sendMessage]);
+
+  useEffect(() => {
+    requestPages();
+  }, [requestPages]);
+
+  let data: PageConfig[] | undefined = lastJsonMessage;
+
   if (data) {
     setLocalPages(data);
-  }
-
-  if (error) {
-    console.error(error);
+  } else {
+    data = getLocalPages();
   }
 
   return {
-    isPending,
-    data: data ?? getLocalPages(),
-    error,
+    pages: data,
+    isLoading: readyState === ReadyState.CONNECTING,
   };
 }

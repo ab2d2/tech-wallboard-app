@@ -6,19 +6,21 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { PageConfig } from "../../types";
 
-export const Header = ({ currentPage }: { currentPage: PageConfig }) => {
+export const Header = ({ currentPage }: { currentPage?: PageConfig }) => {
   return (
     <StyledHeader>
       <Logo />
-      <StyledBreadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
-        aria-label="breadcrumb"
-        sx={{ color: "#fff" }}
-      >
-        {currentPage.categories.map((category) => (
-          <h2 key={category}>{category}</h2>
-        ))}
-      </StyledBreadcrumbs>
+      {currentPage && (
+        <StyledBreadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+          sx={{ color: "#fff" }}
+        >
+          {currentPage.categories.map((category) => (
+            <h2 key={category}>{category}</h2>
+          ))}
+        </StyledBreadcrumbs>
+      )}
     </StyledHeader>
   );
 };

@@ -1,18 +1,21 @@
 import { PageConfig } from "../types";
 import useWebSocket from "react-use-websocket";
-import { useState } from "react";
 import { setLocalPage } from "./local-storage";
 
 export function usePage(initialPage: PageConfig) {
-  const [page, setPage] = useState(initialPage);
+  const { lastJsonMessage } = useWebSocket<PageConfig>(
+    initialPage.webSocketUrl
+      ? `ws://127.0.0.1:1880/${initialPage.webSocketUrl}`
+      : "",
+    {
+      onError: (error) => console.error(error),
+    }
+  );
 
-  useWebSocket(initialPage.webSocketUrl ?? "", {
-    onMessage: (event) => {
-      setPage(event.data);
-      setLocalPage(event.data);
-    },
-    onError: (error) => console.error(error),
-  });
+  if (lastJsonMessage) {
+    setLocalPage(lastJsonMessage);
+    return lastJsonMessage;
+  }
 
-  return page;
+  return initialPage;
 }

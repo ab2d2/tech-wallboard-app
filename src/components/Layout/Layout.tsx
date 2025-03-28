@@ -10,7 +10,7 @@ export const Layout = ({
   currentPage,
 }: {
   children: ReactNode;
-  currentPage: PageConfig;
+  currentPage?: PageConfig;
 }) => {
   return (
     <>

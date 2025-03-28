@@ -12,10 +12,15 @@ export default function Pages({ pages }: { pages: PageConfig[] }) {
   const carouselRef = useRef<MultiCarousel>(null);
 
   useEffect(() => {
+    setCurrentPageIndex(0);
+  }, [pages]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
-      // @ts-expect-error the `next` function does not actually need an argument and works as intended without one
-      carouselRef.current?.next();
+      if (pages.length > 1) {
+        carouselRef.current?.next(currentPageIndex);
+      }
     }, timers.secondsPerPage * 1000);
 
     return () => clearInterval(interval);

@@ -3,20 +3,17 @@ import { PageConfig, PageElement } from "../../types";
 import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
-import { usePage } from "../../data/usePage";
 
 export const Page = ({
-  initialPage,
+  page,
   active,
 }: {
-  initialPage: PageConfig;
+  page: PageConfig;
   active: boolean;
 }) => {
-  const page = usePage(initialPage);
-
   return (
     <StyledContainer>
-      <StyledCategoryOneContainer>
+      <StyledCategoryOneContainer key={page.id}>
         {renderElement(page.primaryElement, "primary", active)}
       </StyledCategoryOneContainer>
       {page.secondaryElement && (

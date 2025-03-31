@@ -5,15 +5,13 @@ import { timers } from "../../constants/timers";
 import { Layout } from "../Layout/Layout";
 import { Carousel } from "../Carousel/Carousel";
 import { Page } from "../Page/page";
-import { PageConfig } from "../../types";
+import { useStore } from "@tanstack/react-store";
+import { pageStore } from "../../data/page-store";
 
-export default function Pages({ pages }: { pages: PageConfig[] }) {
+export default function Pages() {
+  const pages = useStore(pageStore, (state) => Object.values(state));
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const carouselRef = useRef<MultiCarousel>(null);
-
-  useEffect(() => {
-    setCurrentPageIndex(0);
-  }, [pages]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,14 +25,10 @@ export default function Pages({ pages }: { pages: PageConfig[] }) {
   }, [currentPageIndex, pages]);
 
   return (
-    <Layout currentPage={pages[currentPageIndex]}>
+    <Layout>
       <Carousel carouselRef={carouselRef}>
         {pages.map((page, index) => (
-          <Page
-            key={index}
-            initialPage={page}
-            active={index === currentPageIndex}
-          />
+          <Page key={page.id} page={page} active={index === currentPageIndex} />
         ))}
       </Carousel>
     </Layout>

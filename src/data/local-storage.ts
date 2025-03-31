@@ -1,48 +1,33 @@
 import { PageConfig } from "../types";
+import { PageStore } from "./page-store";
 
 const key = "pages";
 
-type PageStore = Record<string, PageConfig>;
-
-function getPageStore(): PageStore | undefined {
+export function getLocalPageStore(): PageStore | undefined {
   const data = localStorage.getItem(key);
   if (!data) return undefined;
 
   return JSON.parse(data);
 }
 
-function setPageStore(store: PageStore) {
+export function updateLocalPageStore(newPages: PageStore) {
+  const store = getLocalPageStore();
+
+  setLocalPageStore({
+    ...store,
+    ...newPages,
+  });
+}
+
+export function setLocalPageStore(store: PageStore) {
   localStorage.setItem(key, JSON.stringify(store));
 }
 
-export function getLocalPages(): PageConfig[] | undefined {
-  const pageStore = getPageStore();
-  if (!pageStore) return undefined;
-
-  return Object.values(pageStore);
-}
-
-export function setLocalPages(pages: PageConfig[]) {
-  const pageMap = pages.reduce((acc: PageStore, page) => {
-    acc[page.id] = page;
-    return acc;
-  }, {});
-
-  setPageStore(pageMap);
-}
-
-export function getLocalPage(id: string): PageConfig | undefined {
-  const pageStore = getPageStore();
-  if (!pageStore) return undefined;
-
-  return pageStore[id];
-}
-
 export function setLocalPage(page: PageConfig) {
-  const pageStore = getPageStore();
+  const pageStore = getLocalPageStore();
 
   if (pageStore) {
     pageStore[page.id] = page;
-    setPageStore(pageStore);
+    setLocalPageStore(pageStore);
   }
 }

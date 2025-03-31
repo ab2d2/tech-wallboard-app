@@ -1,41 +1,40 @@
-import { getLocalPages, setLocalPages } from "./local-storage";
 import { PageConfig } from "../types";
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import useWebSocket from "react-use-websocket";
 import { useCallback, useEffect } from "react";
+import { setPages, updatePages } from "./page-store";
 
-export function usePages(): {
-  pages: PageConfig[] | undefined;
-  isLoading: boolean;
-} {
-  const { lastJsonMessage, sendMessage, readyState } = useWebSocket<
-    PageConfig[]
-  >(
-    "ws://127.0.0.1:1880/ws/config",
-    {
-      onError: (error) => console.error(error),
-      shouldReconnect: () => true,
-      reconnectAttempts: 10,
-      reconnectInterval: 1000,
-    },
-    true
+type WebsocketResponse = {
+  data: PageConfig[];
+  overwrite?: boolean;
+};
+
+export function usePageWebsocket() {
+  const { lastJsonMessage: wsResponse, sendMessage } =
+    useWebSocket<WebsocketResponse>(
+      "ws://127.0.0.1:1880/ws/data",
+      {
+        onError: (error) => console.error(error),
+        shouldReconnect: () => true,
+        reconnectAttempts: 10,
+        reconnectInterval: 1000,
+      },
+      true
+    );
+
+  const requestPages = useCallback(
+    () => sendMessage(new Date().toLocaleString()),
+    [sendMessage]
   );
-
-  const requestPages = useCallback(() => sendMessage(""), [sendMessage]);
 
   useEffect(() => {
     requestPages();
   }, [requestPages]);
 
-  let data: PageConfig[] | undefined = lastJsonMessage;
-
-  if (data) {
-    setLocalPages(data);
-  } else {
-    data = getLocalPages();
+  if (wsResponse && wsResponse.data) {
+    if (wsResponse.overwrite) {
+      setPages(wsResponse.data);
+    } else {
+      updatePages(wsResponse.data);
+    }
   }
-
-  return {
-    pages: data,
-    isLoading: readyState === ReadyState.CONNECTING,
-  };
 }

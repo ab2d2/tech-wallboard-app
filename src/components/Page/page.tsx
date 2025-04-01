@@ -9,10 +9,10 @@ export const Page = ({
   active,
 }: {
   page: PageConfig;
-  active: boolean;
+  active?: boolean;
 }) => {
   return (
-    <StyledContainer>
+    <StyledContainer key={page.id}>
       <StyledCategoryOneContainer key={page.id}>
         {renderElement(page.primaryElement, "primary", active)}
       </StyledCategoryOneContainer>
@@ -30,7 +30,7 @@ export const Page = ({
 const renderElement = (
   element: PageElement,
   position: ElementPosition,
-  active: boolean
+  active?: boolean
 ) => {
   if (typeof element === "string") {
     return <img src={element} />;

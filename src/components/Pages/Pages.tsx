@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { timers } from "../../constants/timers";
 import { Layout } from "../Layout/Layout";
 import { Page } from "../Page/page";
@@ -10,6 +10,8 @@ export default function Pages() {
   const pages = useStore(pageStore, (state) => Object.values(state));
 
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  // Using a ref to store this value as we don't want to cause a rerender when it changes
+  const shouldAnimate = useRef(false);
 
   const getNextPage = useCallback(
     (index: number) => {
@@ -24,26 +26,35 @@ export default function Pages() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
+      if (!shouldAnimate.current) {
+        shouldAnimate.current = true;
+      }
       setCurrentPageIndex(getNextPage(currentPageIndex));
     }, timers.secondsPerPage * 1000);
 
     return () => clearInterval(interval);
-  }, [pages, currentPageIndex, getNextPage]);
+  }, [currentPageIndex, getNextPage]);
 
-  // TODO: currentPage is actually previous page, next page is actually current page. Fix naming/logic
-  const nextPageIndex = getNextPage(currentPageIndex);
+  const previousPageIndex =
+    (currentPageIndex - 1 + pages.length) % pages.length;
+  const previousPage = pages[previousPageIndex];
   const currentPage = pages[currentPageIndex];
-  const nextPage = pages[nextPageIndex];
 
   return (
-    <Layout currentPage={nextPage}>
+    <Layout currentPage={currentPage}>
       <PageContainer>
-        <SlideOut key={currentPageIndex}>
-          <Page page={currentPage} active={false} />
-        </SlideOut>
-        <SlideIn key={nextPageIndex}>
-          <Page page={nextPage} />
-        </SlideIn>
+        {shouldAnimate.current && (
+          <SlideOut key={`previous ${currentPageIndex}`}>
+            <Page page={previousPage} active={false} />
+          </SlideOut>
+        )}
+        {shouldAnimate.current ? (
+          <SlideIn key={`current ${currentPageIndex}`}>
+            <Page page={currentPage} />
+          </SlideIn>
+        ) : (
+          <Page page={currentPage} />
+        )}
       </PageContainer>
     </Layout>
   );

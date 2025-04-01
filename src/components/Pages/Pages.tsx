@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { timers } from "../../constants/timers";
 import { Layout } from "../Layout/Layout";
 import { Page } from "../Page/page";
@@ -10,15 +10,10 @@ export default function Pages() {
   const pages = useStore(pageStore, (state) => Object.values(state));
 
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  // Using a ref to store this value as we don't want to cause a rerender when it changes
-  const shouldAnimate = useRef(false);
 
-  const getNextPage = useCallback(
-    (index: number) => {
-      return (index + 1) % pages.length || 0;
-    },
-    [pages.length]
-  );
+  // Using a ref to store this value as we don't want to cause a re-render when it changes
+  // but still want it to persist between re-renders.
+  const shouldAnimate = useRef(false);
 
   useEffect(() => {
     setCurrentPageIndex(0);
@@ -29,11 +24,11 @@ export default function Pages() {
       if (!shouldAnimate.current) {
         shouldAnimate.current = true;
       }
-      setCurrentPageIndex(getNextPage(currentPageIndex));
+      setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
     }, timers.secondsPerPage * 1000);
 
     return () => clearInterval(interval);
-  }, [currentPageIndex, getNextPage]);
+  }, [currentPageIndex, pages.length]);
 
   const previousPageIndex =
     (currentPageIndex - 1 + pages.length) % pages.length;

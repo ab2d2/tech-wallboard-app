@@ -4,7 +4,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme/theme";
 import { Fonts } from "./theme/fonts";
 import Pages from "./components/Pages/Pages";
-import { usePageWebsocket } from "./data/usePages";
+import { usePageWebsocket } from "./data/usePagesWebsocket";
 
 function App() {
   usePageWebsocket();

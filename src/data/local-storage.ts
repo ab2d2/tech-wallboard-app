@@ -10,13 +10,12 @@ export function getLocalPageStore(): PageStore | undefined {
   return JSON.parse(data);
 }
 
-export function updateLocalPageStore(newPages: PageStore) {
+export function getLocalPages(): PageConfig[] {
   const store = getLocalPageStore();
 
-  setLocalPageStore({
-    ...store,
-    ...newPages,
-  });
+  if (!store) return [];
+
+  return Object.values(store);
 }
 
 export function setLocalPageStore(store: PageStore) {
@@ -24,10 +23,17 @@ export function setLocalPageStore(store: PageStore) {
 }
 
 export function setLocalPage(page: PageConfig) {
-  const pageStore = getLocalPageStore();
+  let pageStore = getLocalPageStore();
 
   if (pageStore) {
     pageStore[page.id] = page;
     setLocalPageStore(pageStore);
+  } else {
+    pageStore = {
+      [page.id]: page,
+    };
+    setLocalPageStore(pageStore);
   }
+
+  return Object.keys(pageStore).indexOf(page.id);
 }

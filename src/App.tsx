@@ -3,17 +3,20 @@ import "./App.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme/theme";
 import { Fonts } from "./theme/fonts";
-import Pages from "./components/Pages/Pages";
-import { usePageWebsocket } from "./data/usePagesWebsocket";
+import PageTransition from "./components/Pages/Pages";
+import { Layout } from "./components/Layout/Layout";
+import { useNextPage } from "./data/useNextPage";
 
 function App() {
-  usePageWebsocket();
+  const nextPage = useNextPage();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       <Fonts />
-      <Pages />
+      <Layout currentPage={nextPage}>
+        <PageTransition page={nextPage} />
+      </Layout>
     </ThemeProvider>
   );
 }

@@ -1,57 +1,41 @@
-import { useState, useEffect, useRef } from "react";
-import { timers } from "../../constants/timers";
-import { Layout } from "../Layout/Layout";
+import { useState, useEffect } from "react";
 import { Page } from "../Page/page";
-import { useStore } from "@tanstack/react-store";
-import { pageStore } from "../../data/page-store";
 import styled from "@emotion/styled";
+import { PageConfig } from "../../types";
+import { Loading } from "../Loading/Loading";
 
-export default function Pages() {
-  const pages = useStore(pageStore, (state) => Object.values(state));
-
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
-
-  // Using a ref to store this value as we don't want to cause a re-render when it changes
-  // but still want it to persist between re-renders.
-  const shouldAnimate = useRef(false);
-
-  useEffect(() => {
-    setCurrentPageIndex(0);
-  }, [pages.length]);
+export default function PageTransition({
+  page: currentPage,
+}: {
+  page: PageConfig;
+}) {
+  const [previousPage, setPreviousPage] = useState<PageConfig>();
 
   useEffect(() => {
-    const interval = setInterval(async () => {
-      if (!shouldAnimate.current) {
-        shouldAnimate.current = true;
-      }
-      setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
-    }, timers.secondsPerPage * 1000);
+    if (currentPage) {
+      new Promise((r) => setTimeout(r, animationDuration)).then(() =>
+        setPreviousPage(currentPage)
+      );
+    }
+  }, [currentPage]);
 
-    return () => clearInterval(interval);
-  }, [currentPageIndex, pages.length]);
+  if (!currentPage) {
+    return <Loading />;
+  }
 
-  const previousPageIndex =
-    (currentPageIndex - 1 + pages.length) % pages.length;
-  const previousPage = pages[previousPageIndex];
-  const currentPage = pages[currentPageIndex];
+  const animate = previousPage && previousPage.id != currentPage.id;
 
   return (
-    <Layout currentPage={currentPage}>
-      <PageContainer>
-        {shouldAnimate.current && (
-          <SlideOut key={`previous ${currentPageIndex}`}>
-            <Page page={previousPage} active={false} />
-          </SlideOut>
-        )}
-        {shouldAnimate.current ? (
-          <SlideIn key={`current ${currentPageIndex}`}>
-            <Page page={currentPage} />
-          </SlideIn>
-        ) : (
-          <Page page={currentPage} />
-        )}
-      </PageContainer>
-    </Layout>
+    <PageContainer>
+      {animate && (
+        <SlideOut key={`previous ${previousPage.id}`}>
+          <Page page={previousPage} active={false} />
+        </SlideOut>
+      )}
+      <SlideIn key={`current ${currentPage.id}`}>
+        <Page page={currentPage} />
+      </SlideIn>
+    </PageContainer>
   );
 }
 
@@ -62,7 +46,7 @@ const PageContainer = styled.div`
   position: relative;
 `;
 
-const animationDuration = 1000;
+const animationDuration = 1500;
 
 const PageWrapper = styled.div`
   position: absolute;

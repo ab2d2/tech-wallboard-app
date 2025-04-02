@@ -5,20 +5,42 @@ import { theme } from "./theme/theme";
 import { Fonts } from "./theme/fonts";
 import PageTransition from "./components/Pages/Pages";
 import { Layout } from "./components/Layout/Layout";
-import { useNextPage } from "./data/useNextPage";
+import { useNextOnlinePage } from "./data/useNextPage";
+import { useNextOfflinePage } from "./data/useNextOfflinePage";
+import { Loading } from "./components/Loading/Loading";
+import { v1 as uuidv1 } from "uuid";
 
 function App() {
-  const nextPage = useNextPage();
+  const clientId = uuidv1();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       <Fonts />
-      <Layout currentPage={nextPage}>
-        <PageTransition page={nextPage} />
-      </Layout>
+      <Main clientId={clientId} />
     </ThemeProvider>
   );
 }
 
 export default App;
+
+function Main({ clientId }: { clientId: string }) {
+  const {
+    page: onlinePage,
+    isConnected,
+    pageIndex,
+  } = useNextOnlinePage(clientId);
+  const offlinePage = useNextOfflinePage(pageIndex, !isConnected);
+
+  const page = isConnected ? onlinePage : offlinePage;
+
+  if (!page) {
+    return <Loading />;
+  }
+
+  return (
+    <Layout currentPage={page} key={`connected:${isConnected}`}>
+      <PageTransition page={page} />
+    </Layout>
+  );
+}

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Page } from "../Page/page";
 import styled from "@emotion/styled";
 import { PageConfig } from "../../types";
-import { Loading } from "../Loading/Loading";
 
 export default function PageTransition({
   page: currentPage,
@@ -19,16 +18,12 @@ export default function PageTransition({
     }
   }, [currentPage]);
 
-  if (!currentPage) {
-    return <Loading />;
-  }
-
   const animate = previousPage && previousPage.id != currentPage.id;
 
   return (
     <PageContainer>
       {animate && (
-        <SlideOut key={`previous ${previousPage.id}`}>
+        <SlideOut key={`previous ${currentPage.id}`}>
           <Page page={previousPage} active={false} />
         </SlideOut>
       )}

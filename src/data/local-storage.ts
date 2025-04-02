@@ -1,5 +1,6 @@
 import { PageConfig } from "../types";
-import { PageStore } from "./page-store";
+
+type PageStore = Record<string, PageConfig>;
 
 const key = "pages";
 

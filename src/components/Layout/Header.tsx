@@ -10,7 +10,7 @@ export const Header = ({ currentPage }: { currentPage?: PageConfig }) => {
   return (
     <StyledHeader>
       <Logo />
-      {currentPage && (
+      {currentPage && currentPage.categories && (
         <StyledBreadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"

@@ -3,7 +3,6 @@ import useWebSocket from "react-use-websocket";
 import { PageConfig } from "../types";
 import { setLocalPage } from "./local-storage";
 import { useCallback, useEffect, useRef } from "react";
-import { timers } from "../constants/timers";
 
 export function useNextOnlinePage(clientId: string): {
   page: PageConfig;
@@ -18,7 +17,6 @@ export function useNextOnlinePage(clientId: string): {
   } = useWebSocket<PageConfig>("ws://127.0.0.1:1880/ws/data", {
     onError: (e) => console.error(e),
     shouldReconnect: () => true,
-    reconnectInterval: timers.secondsPerPage * 1500,
   });
 
   const requestPage = useCallback(() => {
@@ -38,6 +36,8 @@ export function useNextOnlinePage(clientId: string): {
       if (nextPageIndex) pageIndex.current = nextPageIndex;
     }
   }, [nextPage]);
+
+  console.log(readyState);
 
   return {
     page: nextPage,

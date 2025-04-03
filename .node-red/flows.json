@@ -57,45 +57,6 @@
         "color": "#DDAA99"
     },
     {
-        "id": "e774f15a3553987d",
-        "type": "subflow",
-        "name": "Get all pages",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 120,
-                "y": 160,
-                "wires": [
-                    {
-                        "id": "b4b1be8c2ab03922"
-                    },
-                    {
-                        "id": "58dc94a659875e4f"
-                    },
-                    {
-                        "id": "2df28e79bd2e7ac3"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 1160,
-                "y": 180,
-                "wires": [
-                    {
-                        "id": "7308c05963ae6d24",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [],
-        "meta": {},
-        "color": "#DDAA99"
-    },
-    {
         "id": "b2e529d46e7cf874",
         "type": "subflow",
         "name": "Jira",
@@ -260,146 +221,6 @@
         "y": 120,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "7308c05963ae6d24",
-        "type": "join",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "payload.id",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "useparts": false,
-        "accumulate": false,
-        "timeout": "",
-        "count": "3",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 710,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7d14fb2f3fb60e62",
-        "type": "template",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"id\":\"test-3\",\n    \"categories\":[\"Development\",\"Test\"],\n    \"primaryElement\":{\n        \"type\":\"doughnut\",\n        \"data\": [\n            {\"label\":\"Point 1\",\"value\":1},\n            {\"label\":\"Point 1\",\"value\":2}\n        ]\n    }\n}",
-        "output": "json",
-        "x": 360,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b4b1be8c2ab03922",
-        "type": "subflow:ddabf604f4570dc6",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "x": 300,
-        "y": 80,
-        "wires": [
-            [
-                "7308c05963ae6d24"
-            ],
-            [
-                "386ba4c099710a12"
-            ]
-        ]
-    },
-    {
-        "id": "58dc94a659875e4f",
-        "type": "subflow:b2e529d46e7cf874",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "x": 250,
-        "y": 180,
-        "wires": [
-            [
-                "7308c05963ae6d24"
-            ],
-            [
-                "386ba4c099710a12"
-            ]
-        ]
-    },
-    {
-        "id": "386ba4c099710a12",
-        "type": "change",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.failed",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 600,
-        "y": 300,
-        "wires": [
-            [
-                "7308c05963ae6d24"
-            ]
-        ]
-    },
-    {
-        "id": "2bf0ae5d87b0934b",
-        "type": "function",
-        "z": "e774f15a3553987d",
-        "name": "filter out failed requests ",
-        "func": "console.log(msg.filter);\n\nreturn {payload: msg.payload.filter((msg) => !msg.failed)};",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 970,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2df28e79bd2e7ac3",
-        "type": "template",
-        "z": "e774f15a3553987d",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"id\": \"jira-2\",\n    \"categories\": [\"Delivery\", \"Stories\"]\n}",
-        "output": "json",
-        "x": 280,
-        "y": 300,
-        "wires": [
-            [
-                "7308c05963ae6d24"
-            ]
         ]
     },
     {
@@ -723,118 +544,11 @@
         "topic": "",
         "payload": "{\"id\":\"test\",\"categories\":[\"Development\",\"Test\"],\"primaryElement\":{\"type\":\"pie\",\"data\":[{\"label\":\"Point 1\",\"value\":1},{\"label\":\"Point 1\",\"value\":2}]}}",
         "payloadType": "json",
-        "x": 200,
-        "y": 100,
+        "x": 360,
+        "y": 120,
         "wires": [
             [
-                "74ebb4a555fa3d65"
-            ]
-        ]
-    },
-    {
-        "id": "74ebb4a555fa3d65",
-        "type": "subflow:e774f15a3553987d",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "x": 410,
-        "y": 100,
-        "wires": [
-            [
-                "b50edb9769929e8c"
-            ]
-        ]
-    },
-    {
-        "id": "c83fe765be385023",
-        "type": "inject",
-        "z": "e81c82f0fb798f75",
-        "name": "Simulate updating one page",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "5",
-        "topic": "",
-        "x": 300,
-        "y": 500,
-        "wires": [
-            [
-                "de0eee7873b68530"
-            ]
-        ]
-    },
-    {
-        "id": "a9299c8a3db43125",
-        "type": "subflow:3c30ffa1bea72201",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "x": 690,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "de0eee7873b68530",
-        "type": "template",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"id\": \"jira\",\n    \"categories\": [\"Delivery\", \"Stories\"],\n    \"primaryElement\": {\n        \"type\": \"bar\",\n        \"title\": \"Stories Completed\",\n        \"data\": [\n            {\n                \"label\": \"Last sprint\",\n                \"value\": 5\n            },\n            {\n                \"label\": \"This sprint\",\n                \"value\": 12\n            }\n        ]\n    }\n}",
-        "output": "json",
-        "x": 500,
-        "y": 500,
-        "wires": [
-            [
-                "a9299c8a3db43125"
-            ]
-        ]
-    },
-    {
-        "id": "363d496b015d63fd",
-        "type": "inject",
-        "z": "e81c82f0fb798f75",
-        "name": "Simulate adding a page",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "5",
-        "topic": "",
-        "x": 120,
-        "y": 900,
-        "wires": [
-            [
-                "d314b1e96c981ebb"
-            ]
-        ]
-    },
-    {
-        "id": "41107df94b2946a8",
-        "type": "subflow:3c30ffa1bea72201",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "x": 530,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "d314b1e96c981ebb",
-        "type": "template",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"id\": \"jira-2\",\n    \"categories\": [\"Delivery\", \"Stories\"],\n    \"primaryElement\": {\n        \"type\": \"bar\",\n        \"title\": \"Stories Completed 2\",\n        \"data\": [\n            {\n                \"label\": \"Last sprint\",\n                \"value\": 5\n            },\n            {\n                \"label\": \"This sprint\",\n                \"value\": 12\n            }\n        ]\n    }\n}",
-        "output": "json",
-        "x": 320,
-        "y": 900,
-        "wires": [
-            [
-                "41107df94b2946a8"
+                "39667addc8e55845"
             ]
         ]
     },
@@ -846,14 +560,15 @@
         "props": [],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": "5",
+        "once": true,
+        "onceDelay": "0.1",
         "topic": "",
-        "x": 140,
+        "x": 160,
         "y": 280,
         "wires": [
             [
-                "0ba7dfd5c88c3863"
+                "0ba7dfd5c88c3863",
+                "a328d6f1380db3d1"
             ]
         ]
     },
@@ -862,7 +577,7 @@
         "type": "debug",
         "z": "e81c82f0fb798f75",
         "name": "Print errors",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -870,15 +585,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
-        "y": 360,
+        "x": 670,
+        "y": 220,
         "wires": []
     },
     {
         "id": "86c29ca36fa17358",
         "type": "rbe",
         "z": "e81c82f0fb798f75",
-        "name": "Send if changed from last run",
+        "name": "Update if changed",
         "func": "rbe",
         "gap": "",
         "start": "",
@@ -886,7 +601,7 @@
         "septopics": true,
         "property": "payload",
         "topi": "topic",
-        "x": 620,
+        "x": 690,
         "y": 280,
         "wires": [
             [
@@ -899,8 +614,8 @@
         "type": "subflow:ddabf604f4570dc6",
         "z": "e81c82f0fb798f75",
         "name": "",
-        "x": 360,
-        "y": 280,
+        "x": 400,
+        "y": 220,
         "wires": [
             [
                 "86c29ca36fa17358"
@@ -915,44 +630,53 @@
         "type": "subflow:59cae46cae658f00",
         "z": "e81c82f0fb798f75",
         "name": "",
-        "x": 810,
-        "y": 100,
+        "x": 620,
+        "y": 120,
         "wires": []
-    },
-    {
-        "id": "b50edb9769929e8c",
-        "type": "change",
-        "z": "e81c82f0fb798f75",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "pages",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 600,
-        "y": 100,
-        "wires": [
-            [
-                "39667addc8e55845"
-            ]
-        ]
     },
     {
         "id": "5ab7b5994f09b8f7",
         "type": "subflow:3c30ffa1bea72201",
         "z": "e81c82f0fb798f75",
         "name": "",
-        "x": 870,
-        "y": 280,
+        "x": 930,
+        "y": 300,
         "wires": []
+    },
+    {
+        "id": "a328d6f1380db3d1",
+        "type": "subflow:b2e529d46e7cf874",
+        "z": "e81c82f0fb798f75",
+        "name": "",
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "71c3041c058aeb21"
+            ],
+            [
+                "cf7e07634541bab7"
+            ]
+        ]
+    },
+    {
+        "id": "71c3041c058aeb21",
+        "type": "rbe",
+        "z": "e81c82f0fb798f75",
+        "name": "Update if changed",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 690,
+        "y": 340,
+        "wires": [
+            [
+                "5ab7b5994f09b8f7"
+            ]
+        ]
     }
 ]

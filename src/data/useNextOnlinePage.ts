@@ -8,17 +8,22 @@ export function useNextOnlinePage(clientId: string): {
   isConnected: boolean;
   reconnect: () => void;
 } {
-  const pageIndex = useRef(0); // Storing in a ref to reduce re-renders
+  // Storing in refs to reduce re-renders
+  const pageIndex = useRef(0);
+  const socket = useRef<WebSocket>(undefined);
+
   const [nextPage, setNextPage] = useState<PageConfig>();
   const [isConnected, setIsConnected] = useState(false);
 
   const openWebsocket = useCallback(() => {
     const ws = new WebSocket("ws://127.0.0.1:1880/ws/data");
+    socket.current = ws;
 
     ws.onmessage = (e) => {
       console.log("message");
       setNextPage(JSON.parse(e.data));
     };
+
     ws.onopen = () => {
       ws.send(
         JSON.stringify({
@@ -33,6 +38,8 @@ export function useNextOnlinePage(clientId: string): {
 
   useEffect(() => {
     openWebsocket();
+
+    return () => socket.current?.close();
   }, [openWebsocket]);
 
   useEffect(() => {

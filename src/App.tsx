@@ -58,7 +58,7 @@ function Main({ clientId }: { clientId: string }) {
   }
 
   return (
-    <Layout currentPage={page} isConnected={isConnected}>
+    <Layout currentPage={page} isConnected={mode === Mode.online}>
       <PageTransition page={page} />
     </Layout>
   );

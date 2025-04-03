@@ -19,10 +19,7 @@ export function useNextOnlinePage(clientId: string): {
     const ws = new WebSocket("ws://127.0.0.1:1880/ws/data");
     socket.current = ws;
 
-    ws.onmessage = (e) => {
-      console.log("message");
-      setNextPage(JSON.parse(e.data));
-    };
+    ws.onmessage = (e) => setNextPage(JSON.parse(e.data));
 
     ws.onopen = () => {
       ws.send(

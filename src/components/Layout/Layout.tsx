@@ -8,13 +8,15 @@ import { PageConfig } from "../../types";
 export const Layout = ({
   children,
   currentPage,
+  isConnected,
 }: {
   children: ReactNode;
   currentPage?: PageConfig;
+  isConnected: boolean;
 }) => {
   return (
     <>
-      <Header currentPage={currentPage} />
+      <Header currentPage={currentPage} isConnected={isConnected} />
       <StyledMain>{children}</StyledMain>
       <Footer />
     </>

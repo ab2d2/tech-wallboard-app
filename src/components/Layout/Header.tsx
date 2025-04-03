@@ -3,10 +3,17 @@ import styled from "@emotion/styled";
 import { Logo } from "./Logo";
 
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NoConnectionIcon from "@mui/icons-material/SignalWifiBad";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { PageConfig } from "../../types";
 
-export const Header = ({ currentPage }: { currentPage?: PageConfig }) => {
+export const Header = ({
+  currentPage,
+  isConnected,
+}: {
+  currentPage?: PageConfig;
+  isConnected: boolean;
+}) => {
   return (
     <StyledHeader>
       <Logo />
@@ -21,6 +28,8 @@ export const Header = ({ currentPage }: { currentPage?: PageConfig }) => {
           ))}
         </StyledBreadcrumbs>
       )}
+      <StyledSpacer />
+      {!isConnected && <NoConnectionIcon />}
     </StyledHeader>
   );
 };
@@ -39,4 +48,8 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)`
   @media (max-width: 425px) {
     font-size: 0.5rem;
   }
+`;
+
+const StyledSpacer = styled.div`
+  flex: 1;
 `;

@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { ProgressBarWithLabel } from "../Progress/Progress";
 import { timers } from "../../constants/timers";
 
 export const Footer = () => {
   const [dateAndTime, setDateAndTime] = useState(new Date().toLocaleString());
-  const [progress, setProgress] = useState(timers.secondsPerPage);
 
   // Update the date and time every second
   useEffect(() => {
@@ -16,30 +14,9 @@ export const Footer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Update the progress bar every second
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress <= 1 ? timers.secondsPerPage : prevProgress - 1
-      );
-    }, timers.milliSecondsPerUpdate);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
   return (
     <StyledFooter>
       <StyledTimeAndDate>{dateAndTime}</StyledTimeAndDate>
-      <ProgressBarWithLabel
-        progress={{
-          progressPercentage: calculateProgressPercentage(
-            progress,
-            timers.secondsPerPage
-          ),
-          timeRemaining: progress,
-        }}
-      />
     </StyledFooter>
   );
 };
@@ -59,10 +36,3 @@ const StyledTimeAndDate = styled.span`
   font-weight: bold;
   color: white;
 `;
-
-function calculateProgressPercentage(
-  progress: number,
-  secondsPerPage: number
-): number {
-  return ((secondsPerPage - progress) / secondsPerPage) * 100;
-}

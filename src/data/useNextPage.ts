@@ -1,34 +1,39 @@
-import { ReadyState } from "react-use-websocket";
-import useWebSocket from "react-use-websocket";
 import { PageConfig } from "../types";
 import { setLocalPage } from "./local-storage";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useNextOnlinePage(clientId: string): {
-  page: PageConfig;
+  page: PageConfig | undefined;
   pageIndex: number;
   isConnected: boolean;
+  reconnect: () => void;
 } {
   const pageIndex = useRef(0); // Storing in a ref to reduce re-renders
-  const {
-    lastJsonMessage: nextPage,
-    readyState,
-    sendJsonMessage,
-  } = useWebSocket<PageConfig>("ws://127.0.0.1:1880/ws/data", {
-    onError: (e) => console.error(e),
-    shouldReconnect: () => true,
-  });
+  const [nextPage, setNextPage] = useState<PageConfig>();
+  const [isConnected, setIsConnected] = useState(false);
 
-  const requestPage = useCallback(() => {
-    sendJsonMessage({
-      clientId: clientId,
-      timeStamp: new Date().getSeconds(),
-    });
-  }, [sendJsonMessage, clientId]);
+  const openWebsocket = useCallback(() => {
+    const ws = new WebSocket("ws://127.0.0.1:1880/ws/data");
+
+    ws.onmessage = (e) => {
+      console.log("message");
+      setNextPage(JSON.parse(e.data));
+    };
+    ws.onopen = () => {
+      ws.send(
+        JSON.stringify({
+          clientId: clientId,
+          timeStamp: new Date().getSeconds(),
+        })
+      );
+      setIsConnected(true);
+    };
+    ws.onclose = () => setIsConnected(false);
+  }, [clientId]);
 
   useEffect(() => {
-    requestPage();
-  }, [requestPage]);
+    openWebsocket();
+  }, [openWebsocket]);
 
   useEffect(() => {
     if (nextPage) {
@@ -37,11 +42,10 @@ export function useNextOnlinePage(clientId: string): {
     }
   }, [nextPage]);
 
-  console.log(readyState);
-
   return {
     page: nextPage,
     pageIndex: pageIndex.current,
-    isConnected: readyState === ReadyState.OPEN,
+    isConnected,
+    reconnect: openWebsocket,
   };
 }

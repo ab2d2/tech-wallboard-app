@@ -37,16 +37,18 @@ function Main({ clientId }: { clientId: string }) {
     page: onlinePage,
     isConnected,
     pageIndex,
+    reconnect,
   } = useNextOnlinePage(clientId);
 
   const checkConnection = useCallback(() => {
     setMode(isConnected ? Mode.online : Mode.offline);
-  }, [isConnected]);
+    if (!isConnected) reconnect();
+  }, [isConnected, reconnect]);
 
   const offlinePage = useNextOfflinePage({
     initialPageIndex: pageIndex,
     active: !isConnected,
-    onTick: checkConnection,
+    onPageChanged: checkConnection,
   });
 
   const page = mode === Mode.online ? onlinePage : offlinePage;
@@ -56,7 +58,7 @@ function Main({ clientId }: { clientId: string }) {
   }
 
   return (
-    <Layout currentPage={page} key={mode}>
+    <Layout currentPage={page} isConnected={isConnected}>
       <PageTransition page={page} />
     </Layout>
   );

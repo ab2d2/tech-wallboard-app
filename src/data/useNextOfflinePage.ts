@@ -6,7 +6,7 @@ import { timers } from "../constants/timers";
 export function useNextOfflinePage({
   initialPageIndex,
   active,
-  onTick,
+  onPageChanged,
 }: OfflinePageProps): PageConfig | undefined {
   const [currentPageIndex, setCurrentPageIndex] = useState(initialPageIndex);
   const intervalId = useRef<number | undefined>(undefined);
@@ -16,7 +16,7 @@ export function useNextOfflinePage({
   useEffect(() => {
     intervalId.current = window.setInterval(() => {
       setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
-      onTick();
+      onPageChanged();
 
       if (!active) {
         clearInterval(intervalId.current);
@@ -24,7 +24,7 @@ export function useNextOfflinePage({
     }, timers.secondsPerPage * 1000);
 
     return () => clearInterval(intervalId.current);
-  }, [pages.length, active, onTick]);
+  }, [pages.length, active, onPageChanged]);
 
   return pages[currentPageIndex];
 }
@@ -34,6 +34,6 @@ type OfflinePageProps = {
   initialPageIndex: number;
   /// If the page change timer is active
   active: boolean;
-  /// Runs on each tick of the timer
-  onTick: () => void;
+  /// Runs on each page change
+  onPageChanged: () => void;
 };

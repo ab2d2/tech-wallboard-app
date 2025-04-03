@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "node-red": "node-red --userDir ./.node-red",
-    "dev": "concurrently --kill-others \"npm run node-red\" \"vite\"",
+    "dev": "vite",
+    "app": "concurrently --kill-others \"npm run node-red\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

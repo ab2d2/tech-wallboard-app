@@ -14,7 +14,7 @@ export function useNextOfflinePage(
 
   useEffect(() => {
     if (active) {
-      intervalId.current = setInterval(() => {
+      intervalId.current = window.setInterval(() => {
         setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
       }, timers.secondsPerPage * 1000);
     } else {

@@ -1,26 +1,26 @@
 import styled from "@emotion/styled";
-import { PageData, PageElement } from "../../types";
+import { PageConfig, PageElement } from "../../types";
 import { ChartView } from "../ChartView/ChartView";
 import { ChartGrid } from "../ChartGrid/ChartGrid";
 import { chartColours } from "../Charts/contants";
 
 export const Page = ({
-  currentPage,
+  page,
   active,
 }: {
-  currentPage: PageData;
-  active: boolean;
+  page: PageConfig;
+  active?: boolean;
 }) => {
   return (
-    <StyledContainer>
-      <StyledCategoryOneContainer>
-        {renderElement(currentPage.primaryElement, "primary", active)}
+    <StyledContainer key={page.id}>
+      <StyledCategoryOneContainer key={page.id}>
+        {renderElement(page.primaryElement, "primary", active)}
       </StyledCategoryOneContainer>
-      {currentPage.secondaryElement && (
+      {page.secondaryElement && (
         <StyledCategoryTwoContainer
-          hasMultipleCharts={Array.isArray(currentPage.secondaryElement)}
+          hasMultipleCharts={Array.isArray(page.secondaryElement)}
         >
-          {renderElement(currentPage.secondaryElement, "secondary", active)}
+          {renderElement(page.secondaryElement, "secondary", active)}
         </StyledCategoryTwoContainer>
       )}
     </StyledContainer>
@@ -30,7 +30,7 @@ export const Page = ({
 const renderElement = (
   element: PageElement,
   position: ElementPosition,
-  active: boolean
+  active?: boolean
 ) => {
   if (typeof element === "string") {
     return <img src={element} />;

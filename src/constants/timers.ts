@@ -1,4 +1,4 @@
 export const timers = {
-  secondsPerPage: 10,
+  secondsPerPage: 4,
   milliSecondsPerUpdate: 1000,
 };

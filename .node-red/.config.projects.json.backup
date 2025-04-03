@@ -1,0 +1,8 @@
+{
+    "projects": {
+        "tech-wallboards-backend": {
+            "credentialSecret": "tgg"
+        }
+    },
+    "activeProject": "tech-wallboards-backend"
+}

@@ -8,7 +8,7 @@ export function useNextOfflinePage(
   active: boolean
 ): PageConfig | undefined {
   const [currentPageIndex, setCurrentPageIndex] = useState(initialPageIndex);
-  const intervalId = useRef<number | undefined>(undefined);
+  const intervalId = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const pages = getLocalPages();
 
@@ -18,10 +18,12 @@ export function useNextOfflinePage(
         setCurrentPageIndex((prevIndex) => (prevIndex + 1) % pages.length || 0);
       }, timers.secondsPerPage * 1000);
     } else {
-      clearInterval(intervalId.current);
+      intervalId.current?.close();
     }
 
-    return () => clearInterval(intervalId.current);
+    return () => {
+      intervalId.current?.close();
+    };
   }, [pages.length, active]);
 
   return pages[currentPageIndex];

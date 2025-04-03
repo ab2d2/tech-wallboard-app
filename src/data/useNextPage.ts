@@ -39,8 +39,6 @@ export function useNextOnlinePage(clientId: string): {
     }
   }, [nextPage]);
 
-  console.log(readyState);
-
   return {
     page: nextPage,
     pageIndex: pageIndex.current,

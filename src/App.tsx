@@ -7,8 +7,8 @@ import PageTransition from "./components/Pages/Pages";
 import { Layout } from "./components/Layout/Layout";
 import { useNextOnlinePage } from "./data/useNextPage";
 import { useNextOfflinePage } from "./data/useNextOfflinePage";
-import { Loading } from "./components/Loading/Loading";
 import { v1 as uuidv1 } from "uuid";
+import { Loading } from "./components/Loading/Loading";
 
 function App() {
   const clientId = uuidv1();
@@ -30,6 +30,7 @@ function Main({ clientId }: { clientId: string }) {
     isConnected,
     pageIndex,
   } = useNextOnlinePage(clientId);
+  // TODO: only switch to online page after counter finishes
   const offlinePage = useNextOfflinePage(pageIndex, !isConnected);
 
   const page = isConnected ? onlinePage : offlinePage;

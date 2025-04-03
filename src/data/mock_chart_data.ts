@@ -1,6 +1,6 @@
 import { PageConfig } from "../types";
 
-export const pages: PageConfig[] = [
+export const mockPages: PageConfig[] = [
   {
     categories: ["Delivery", "Flow distribution"],
     id: "1",

@@ -1,4 +1,5 @@
 import { PageConfig } from "../types";
+import { mockPages } from "./mock_chart_data";
 
 type PageStore = Record<string, PageConfig>;
 
@@ -14,9 +15,19 @@ export function getLocalPageStore(): PageStore | undefined {
 export function getLocalPages(): PageConfig[] {
   const store = getLocalPageStore();
 
-  if (!store) return [];
+  // A temporary measure for development purposes to show pages even if there's nothing in local storage
+  if (!store) return mockPages;
 
   return Object.values(store);
+}
+
+export function setLocalPages(pages: PageConfig[]) {
+  const pageStore: PageStore = pages.reduce((store, page) => {
+    store[page.id] = page;
+    return store;
+  }, {} as PageStore);
+
+  setLocalPageStore(pageStore);
 }
 
 export function setLocalPageStore(store: PageStore) {
